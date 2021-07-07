@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CapteurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,33 @@ class Capteur
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $cap_archive;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Grandeur::class, inversedBy="capteurs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $grandeur;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Mesure::class, mappedBy="capteur")
+     */
+    private $mesures;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PtMesure::class, mappedBy="capteur")
+     */
+    private $ptMesures;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Site::class, inversedBy="capteurs")
+     */
+    private $site;
+
+    public function __construct()
+    {
+        $this->mesures = new ArrayCollection();
+        $this->ptMesures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +132,90 @@ class Capteur
     public function setCapArchive(?bool $cap_archive): self
     {
         $this->cap_archive = $cap_archive;
+
+        return $this;
+    }
+
+    public function getGrandeur(): ?Grandeur
+    {
+        return $this->grandeur;
+    }
+
+    public function setGrandeur(?Grandeur $grandeur): self
+    {
+        $this->grandeur = $grandeur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Mesure[]
+     */
+    public function getMesures(): Collection
+    {
+        return $this->mesures;
+    }
+
+    public function addMesure(Mesure $mesure): self
+    {
+        if (!$this->mesures->contains($mesure)) {
+            $this->mesures[] = $mesure;
+            $mesure->setCapteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMesure(Mesure $mesure): self
+    {
+        if ($this->mesures->removeElement($mesure)) {
+            // set the owning side to null (unless already changed)
+            if ($mesure->getCapteur() === $this) {
+                $mesure->setCapteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PtMesure[]
+     */
+    public function getPtMesures(): Collection
+    {
+        return $this->ptMesures;
+    }
+
+    public function addPtMesure(PtMesure $ptMesure): self
+    {
+        if (!$this->ptMesures->contains($ptMesure)) {
+            $this->ptMesures[] = $ptMesure;
+            $ptMesure->setCapteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removePtMesure(PtMesure $ptMesure): self
+    {
+        if ($this->ptMesures->removeElement($ptMesure)) {
+            // set the owning side to null (unless already changed)
+            if ($ptMesure->getCapteur() === $this) {
+                $ptMesure->setCapteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSite(): ?Site
+    {
+        return $this->site;
+    }
+
+    public function setSite(?Site $site): self
+    {
+        $this->site = $site;
 
         return $this;
     }

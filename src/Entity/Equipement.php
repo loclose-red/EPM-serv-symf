@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EquipementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,22 @@ class Equipement
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $equ_archive;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PtMesure::class, mappedBy="equipement")
+     */
+    private $ptMesures;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Site::class, inversedBy="equipements")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $site;
+
+    public function __construct()
+    {
+        $this->ptMesures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +155,48 @@ class Equipement
     public function setEquArchive(?bool $equ_archive): self
     {
         $this->equ_archive = $equ_archive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PtMesure[]
+     */
+    public function getPtMesures(): Collection
+    {
+        return $this->ptMesures;
+    }
+
+    public function addPtMesure(PtMesure $ptMesure): self
+    {
+        if (!$this->ptMesures->contains($ptMesure)) {
+            $this->ptMesures[] = $ptMesure;
+            $ptMesure->setEquipement($this);
+        }
+
+        return $this;
+    }
+
+    public function removePtMesure(PtMesure $ptMesure): self
+    {
+        if ($this->ptMesures->removeElement($ptMesure)) {
+            // set the owning side to null (unless already changed)
+            if ($ptMesure->getEquipement() === $this) {
+                $ptMesure->setEquipement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSite(): ?Site
+    {
+        return $this->site;
+    }
+
+    public function setSite(?Site $site): self
+    {
+        $this->site = $site;
 
         return $this;
     }

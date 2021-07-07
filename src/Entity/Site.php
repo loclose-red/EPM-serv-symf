@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SiteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,28 @@ class Site
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $sit_archive;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Equipement::class, mappedBy="site")
+     */
+    private $equipements;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Capteur::class, mappedBy="site")
+     */
+    private $capteurs;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Utilisateur::class, mappedBy="site")
+     */
+    private $utilisateurs;
+
+    public function __construct()
+    {
+        $this->equipements = new ArrayCollection();
+        $this->capteurs = new ArrayCollection();
+        $this->utilisateurs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +144,93 @@ class Site
     public function setSitArchive(?bool $sit_archive): self
     {
         $this->sit_archive = $sit_archive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Equipement[]
+     */
+    public function getEquipements(): Collection
+    {
+        return $this->equipements;
+    }
+
+    public function addEquipement(Equipement $equipement): self
+    {
+        if (!$this->equipements->contains($equipement)) {
+            $this->equipements[] = $equipement;
+            $equipement->setSite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipement(Equipement $equipement): self
+    {
+        if ($this->equipements->removeElement($equipement)) {
+            // set the owning side to null (unless already changed)
+            if ($equipement->getSite() === $this) {
+                $equipement->setSite(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Capteur[]
+     */
+    public function getCapteurs(): Collection
+    {
+        return $this->capteurs;
+    }
+
+    public function addCapteur(Capteur $capteur): self
+    {
+        if (!$this->capteurs->contains($capteur)) {
+            $this->capteurs[] = $capteur;
+            $capteur->setSite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCapteur(Capteur $capteur): self
+    {
+        if ($this->capteurs->removeElement($capteur)) {
+            // set the owning side to null (unless already changed)
+            if ($capteur->getSite() === $this) {
+                $capteur->setSite(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Utilisateur[]
+     */
+    public function getUtilisateurs(): Collection
+    {
+        return $this->utilisateurs;
+    }
+
+    public function addUtilisateur(Utilisateur $utilisateur): self
+    {
+        if (!$this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs[] = $utilisateur;
+            $utilisateur->addSite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUtilisateur(Utilisateur $utilisateur): self
+    {
+        if ($this->utilisateurs->removeElement($utilisateur)) {
+            $utilisateur->removeSite($this);
+        }
 
         return $this;
     }

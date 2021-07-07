@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,16 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Site::class, inversedBy="utilisateurs")
+     */
+    private $site;
+
+    public function __construct()
+    {
+        $this->site = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -125,5 +137,34 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+    public function __toString()
+    {
+        return $this->name;
+        // TODO: Implement __toString() method.
+    }
+
+    /**
+     * @return Collection|Site[]
+     */
+    public function getSite(): Collection
+    {
+        return $this->site;
+    }
+
+    public function addSite(Site $site): self
+    {
+        if (!$this->site->contains($site)) {
+            $this->site[] = $site;
+        }
+
+        return $this;
+    }
+
+    public function removeSite(Site $site): self
+    {
+        $this->site->removeElement($site);
+
+        return $this;
     }
 }

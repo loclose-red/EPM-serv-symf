@@ -47,6 +47,24 @@ class Mesure
      */
     private $mes_archive;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Grandeur::class, inversedBy="mesures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $grandeur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Capteur::class, inversedBy="mesures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $capteur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PtMesure::class, inversedBy="mesures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ptmesure;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +138,42 @@ class Mesure
     public function setMesArchive(?bool $mes_archive): self
     {
         $this->mes_archive = $mes_archive;
+
+        return $this;
+    }
+
+    public function getGrandeur(): ?Grandeur
+    {
+        return $this->grandeur;
+    }
+
+    public function setGrandeur(?Grandeur $grandeur): self
+    {
+        $this->grandeur = $grandeur;
+
+        return $this;
+    }
+
+    public function getCapteur(): ?Capteur
+    {
+        return $this->capteur;
+    }
+
+    public function setCapteur(?Capteur $capteur): self
+    {
+        $this->capteur = $capteur;
+
+        return $this;
+    }
+
+    public function getPtmesure(): ?PtMesure
+    {
+        return $this->ptmesure;
+    }
+
+    public function setPtmesure(?PtMesure $ptmesure): self
+    {
+        $this->ptmesure = $ptmesure;
 
         return $this;
     }
