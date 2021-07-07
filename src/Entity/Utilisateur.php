@@ -138,11 +138,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-    public function __toString()
-    {
-        return $this->name;
-        // TODO: Implement __toString() method.
-    }
+
+    //attention fait planter EasyAdmin
+    // public function __toString()
+    // {
+    //     return $this->name;
+    //     // TODO: Implement __toString() method.
+    // }
 
     /**
      * @return Collection|Site[]
