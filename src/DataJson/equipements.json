@@ -1,0 +1,54 @@
+{
+    "equipements": [
+        {
+            "marque": "Sony",
+            "modele": "sollicitudin",
+            "serie": 285516
+        },
+        {
+            "marque": "Motorola",
+            "modele": "quis",
+            "serie": 850412
+        },
+        {
+            "marque": "Motorola",
+            "modele": "odio",
+            "serie": 288964
+        },
+        {
+            "marque": "Philips",
+            "modele": "tortor",
+            "serie": 499591
+        },
+        {
+            "marque": "Motorola",
+            "modele": "morbi",
+            "serie": 118498
+        },
+        {
+            "marque": "Sony",
+            "modele": "pede",
+            "serie": 644365
+        },
+        {
+            "marque": "Sony",
+            "modele": "neque",
+            "serie": 259213
+        },
+        {
+            "marque": "Motorola",
+            "modele": "mus",
+            "serie": 876407
+        },
+        {
+            "marque": "Sony",
+            "modele": "quam",
+            "serie": 556047
+        },
+        {
+            "marque": "Motorola",
+            "modele": "congue",
+            "serie": 933228
+        }
+    ]
+}

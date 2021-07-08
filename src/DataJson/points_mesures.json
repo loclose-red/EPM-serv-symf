@@ -1,0 +1,44 @@
+{
+    "points de mesure": [
+        {
+            "nom": "Sortie",
+            "position": "80"
+        },
+        {
+            "nom": "intermédiaire",
+            "position": "42"
+        },
+        {
+            "nom": "intermédiaire",
+            "position": "92"
+        },
+        {
+            "nom": "intermédiaire",
+            "position": "49"
+        },
+        {
+            "nom": "Sortie",
+            "position": "18"
+        },
+        {
+            "nom": "intermédiaire",
+            "position": "94"
+        },
+        {
+            "nom": "intermédiaire",
+            "position": "90"
+        },
+        {
+            "nom": "Sortie",
+            "position": "71"
+        },
+        {
+            "nom": "Sortie",
+            "position": "68"
+        },
+        {
+            "nom": "intermédiaire",
+            "position": "16"
+        }
+    ]
+}

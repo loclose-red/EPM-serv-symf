@@ -1,0 +1,54 @@
+{
+    "capteurs": [
+        {
+            "marque": "Humilab",
+            "modele": "ultrices",
+            "serie": 4264
+        },
+        {
+            "marque": "Fluke",
+            "modele": "pede",
+            "serie": 9852
+        },
+        {
+            "marque": "Rotho",
+            "modele": "consequat",
+            "serie": 3559
+        },
+        {
+            "marque": "ATI",
+            "modele": "ipsum",
+            "serie": 4878
+        },
+        {
+            "marque": "Humilab",
+            "modele": "in",
+            "serie": 1457
+        },
+        {
+            "marque": "Rotho",
+            "modele": "habitasse",
+            "serie": 6091
+        },
+        {
+            "marque": "Fluke",
+            "modele": "sed",
+            "serie": 6712
+        },
+        {
+            "marque": "Humilab",
+            "modele": "sit",
+            "serie": 8113
+        },
+        {
+            "marque": "Rotho",
+            "modele": "libero",
+            "serie": 1806
+        },
+        {
+            "marque": "Fluke",
+            "modele": "non",
+            "serie": 5942
+        }
+    ]
+}
