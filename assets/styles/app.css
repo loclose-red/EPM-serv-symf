@@ -1,0 +1,14 @@
+:root {
+    --body-bg-color: rgb(187, 187, 187);
+}
+
+
+body {
+    background-color: var(--body-bg-color);
+}
+
+
+.titreHome {
+    background-color: rgb(193, 159, 224);
+    text-align: center;
+}

@@ -4,18 +4,271 @@
 
 {% block body %}
   <style>
-    .example-wrapper {
-      margin: 1em auto;
-      max-width: 800px;
-      width: 95%;
-      font: 18px/1.5 sans-serif;
+    img {
+      width: 10rem;
+      /* height: 10rem; */
+      margin: 2rem;
     }
-    .example-wrapper code {
-      background: #F5F5F5;
-      padding: 2px 6px;
+    .menuGauche {
+      display: flex;
+      flex-direction: column;
+    }
+    .blocBoutons {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid grey;
+      border-radius: 1rem;
+    }
+    .blocBoutons .btn {
+      margin: 1rem 2rem;
+    }
+    .trancheSelection {
+      display: flex;
+    }
+    .titreUtilisateur {
+      display: flex;
+      border: 1px solid grey;
+      margin: 1rem;
+    }
+    .blocTitreEquipement {
+      display: flex;
+
+    }
+    .titreListePoints {
+      display: flex;
+    }
+    .imageEquipement {
+      width: 40rem;
+    }
+    .imageEquipement img {
+      width: 40rem;
+    }
+    .blocTableauUtilisateur {
+      border: 1px solid grey;
+      border-radius: 1rem;
+    }
+    .blocTableauUtilisateur table {
+      margin: 1rem;
+      width: 95%;
+    }
+    .blocEquipement {
+      border: 1px solid grey;
+      border-radius: 1rem;
+    }
+    .blocTitreEquipement {
+      margin: 1rem;
+    }
+    .tableauEquipements table {
+      margin: 1rem;
+      width: 95%;
+    }
+    .blocDetailEquipement {
+      margin: 1rem;
+      border: 1px solid grey;
+      border-radius: 1rem;
     }
   </style>
   <div class="example-wrapper">
     <h1>Admin Board</h1>
   </div>
+  <main class="row">
+
+    <div class="menuGauche col-3">
+      <img src="{{ asset('images/HVAC_logo.jpg') }}" alt="Symfony!"/>
+      <div class="blocBoutons">
+        <a href="" class="btn btn-primary">Accueil</a>
+        <a href="" class="btn btn-primary">Utilisateurs</a>
+        <a href="" class="btn btn-primary">Sites</a>
+        <a href="" class="btn btn-primary">Equimements</a>
+        <a href="" class="btn btn-primary">Points de mesures</a>
+        <a href="" class="btn btn-primary">Capteurs</a>
+      </div>
+    </div>
+
+    <div class="pageDroite col-9">
+      <div class="trancheSelection">
+        <form action="" method="POST">
+          <p>{{siteSelect[0].sitville}}</p>
+          <select id='select_site' name='select_site' onchange="this.form.submit()">
+            <option name='choisir' value='null'>{{siteSelect[0].sitville}}</option>
+            {% for site in sites %}
+              <option name='{{site.sitville}}' value='{{ site.id }}'>Site:{{ site.sitville }}</option>
+            {% endfor %}
+          </select>
+        </form>
+        <a href="" class="btn btn-primary">Voir dashboard client</a>
+      </div>
+
+      <div class="trancheUtilisateurs">
+        <div class="titreUtilisateur">
+          <h3>Utilisateurs</h3>
+          <a href="" class="btn btn-primary">Ajouter Utilisateur</a>
+        </div>
+
+        <div class="blocTableauUtilisateur">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Autorisation</th>
+                <th scope="col">Action</th>
+                <th scope="col"></th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>user</td>
+                <td>
+                  <a href="" class="btn btn-primary">Edit</a>
+                </td>
+                <td>
+                  <a href="" class="btn btn-primary">Supp.</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>user</td>
+                <td>
+                  <a href="" class="btn btn-primary">Edit</a>
+                </td>
+                <td>
+                  <a href="" class="btn btn-primary">Supp.</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="trancheEquipements">
+        <div class="blocTitreEquipement">
+          <h3>Equipement</h3>
+          <a href="" class="btn btn-primary">Ajouter equipement</a>
+        </div>
+        <div class="blocEquipement">
+          <div class="tableauEquipements">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Action</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Steril fab</td>
+                  <td>
+                    <a href="" class="btn btn-primary">Afficher</a>
+                  </td>
+                  <td>
+                    <a href="" class="btn btn-primary">Edit</a>
+                  </td>
+                  <td>
+                    <a href="" class="btn btn-primary">Supp.</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Osmose</td>
+                  <td>
+                    <a href="" class="btn btn-primary">Afficher</a>
+                  </td>
+                  <td>
+                    <a href="" class="btn btn-primary">Edit</a>
+                  </td>
+                  <td>
+                    <a href="" class="btn btn-primary">Supp.</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Detail equipement</h3>
+          <div class="blocDetailEquipement">
+            <div class="detailEquipHead">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Modele</th>
+                    <th scope="col">N° serie</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Motorola</td>
+                    <td>FUIL5263</td>
+                    <td>25365263</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="titreListePoints">
+              <h3>Liste des points</h3>
+              <a href="" class="btn btn-primary">Ajouter un point</a>
+            </div>
+            <div class="tableauDesPoints">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nom du pt.</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Capteur associé</th>
+                    <th scope="col">Action</th>
+                    <th scope="col"></th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Motorola</td>
+                    <td>FUIL5263</td>
+                    <td>25365263</td>
+                    <td>
+                      <a href="" class="btn btn-primary">Edit</a>
+                    </td>
+                    <td>
+                      <a href="" class="btn btn-primary">Supp.</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Motorola</td>
+                    <td>FUIL5263</td>
+                    <td>25365263</td>
+                    <td>
+                      <a href="" class="btn btn-primary">Edit</a>
+                    </td>
+                    <td>
+                      <a href="" class="btn btn-primary">Supp.</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <div class="imageEquipement">
+              <img src="{{ asset('images/machine-production-1.jpg') }}" alt="Symfony!"/>
+            </div>
+          </div>
+        </div>
+        {% for equipement in equipements %}
+          <p>{{equipement.equmarque}}</p>
+
+        {% endfor %}
+        <form></form>
+      </div>
+    </div>
+
+  </main>
 {% endblock %}
