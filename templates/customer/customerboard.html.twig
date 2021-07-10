@@ -3,21 +3,18 @@
 {% block title %}Customerboard{% endblock %}
 
 {% block body %}
-  <style>
-    .example-wrapper {
-      margin: 1em auto;
-      max-width: 800px;
-      width: 95%;
-      font: 18px/1.5 sans-serif;
-    }
-    .example-wrapper code {
-      background: #F5F5F5;
-      padding: 2px 6px;
-    }
-  </style>
+  <style></style>
 
-  <div class="example-wrapper">
-    <h1>Customer Board</h1>
+  <h1>Customer Board</h1>
+  <img src="{{ asset('images/HVAC_logo.jpg') }}" alt="image logo HVAC"/>
+  {# <form action="" method="POST">
+    <p>{{siteSelect.sitville}}</p>
+    <select class="form-select" id='select_site' name='select_site' onchange="this.form.submit()">
+      <option name='choisir' value='null'>{{siteSelect.sitville}}</option>
+      {% for site in sites %}
+        <option name='{{site.sitville}}' value='{{ site.id }}'>Site:{{ site.sitville }}</option>
+      {% endfor %}
+    </select>
+  </form> #}
 
-  </div>
 {% endblock %}

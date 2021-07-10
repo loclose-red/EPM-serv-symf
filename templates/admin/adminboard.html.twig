@@ -4,6 +4,10 @@
 
 {% block body %}
   <style>
+    h1 {
+      text-align: center;
+      margin: 2rem;
+    }
     img {
       width: 10rem;
       /* height: 10rem; */
@@ -25,9 +29,11 @@
     .trancheSelection {
       display: flex;
     }
+    h3 {
+      margin-right: 1rem;
+    }
     .titreUtilisateur {
       display: flex;
-      border: 1px solid grey;
       margin: 1rem;
     }
     .blocTitreEquipement {
@@ -42,6 +48,8 @@
     }
     .imageEquipement img {
       width: 40rem;
+      margin-left: 6rem;
+      margin-right: auto;
     }
     .blocTableauUtilisateur {
       border: 1px solid grey;
@@ -55,6 +63,9 @@
       border: 1px solid grey;
       border-radius: 1rem;
     }
+    .blocEquipement h3 {
+      margin-left: 1rem;
+    }
     .blocTitreEquipement {
       margin: 1rem;
     }
@@ -67,6 +78,10 @@
       border: 1px solid grey;
       border-radius: 1rem;
     }
+    .blocDetailEquipement table {
+      margin: 1rem;
+      width: 95%;
+    }
   </style>
   <div class="example-wrapper">
     <h1>Admin Board</h1>
@@ -74,7 +89,7 @@
   <main class="row">
 
     <div class="menuGauche col-3">
-      <img src="{{ asset('images/HVAC_logo.jpg') }}" alt="Symfony!"/>
+      <img src="{{ asset('images/HVAC_logo.jpg') }}" alt="image logo HVAC"/>
       <div class="blocBoutons">
         <a href="" class="btn btn-primary">Accueil</a>
         <a href="" class="btn btn-primary">Utilisateurs</a>
@@ -88,15 +103,15 @@
     <div class="pageDroite col-9">
       <div class="trancheSelection">
         <form action="" method="POST">
-          <p>{{siteSelect[0].sitville}}</p>
-          <select id='select_site' name='select_site' onchange="this.form.submit()">
-            <option name='choisir' value='null'>{{siteSelect[0].sitville}}</option>
+          <p>{{siteSelect.sitville}}</p>
+          <select class="form-select" id='select_site' name='postSiteId' onchange="this.form.submit()">
+            <option name='choisir' value='null'>{{siteSelect.sitville}}</option>
             {% for site in sites %}
               <option name='{{site.sitville}}' value='{{ site.id }}'>Site:{{ site.sitville }}</option>
             {% endfor %}
           </select>
         </form>
-        <a href="" class="btn btn-primary">Voir dashboard client</a>
+        <a href="" class="btn btn-success">Voir dashboard client</a>
       </div>
 
       <div class="trancheUtilisateurs">
@@ -109,37 +124,24 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Autorisation</th>
+                <th scope="col">Nom (logname)</th>
                 <th scope="col">Action</th>
                 <th scope="col"></th>
-
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>user</td>
-                <td>
-                  <a href="" class="btn btn-primary">Edit</a>
-                </td>
-                <td>
-                  <a href="" class="btn btn-primary">Supp.</a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>user</td>
-                <td>
-                  <a href="" class="btn btn-primary">Edit</a>
-                </td>
-                <td>
-                  <a href="" class="btn btn-primary">Supp.</a>
-                </td>
-              </tr>
+              {% for utilisateur in utilisateurs %}
+                <tr>
+                  <td>{{utilisateur.logname}}</td>
+                  <td>
+                    <a href="" class="btn btn-primary">Edit</a>
+                  </td>
+                  <td>
+                    <a href="" class="btn btn-danger">Supp.</a>
+                  </td>
+                </tr>
+              {% endfor %}
+
             </tbody>
           </table>
         </div>
@@ -147,7 +149,7 @@
 
       <div class="trancheEquipements">
         <div class="blocTitreEquipement">
-          <h3>Equipement</h3>
+          <h3>Equipements</h3>
           <a href="" class="btn btn-primary">Ajouter equipement</a>
         </div>
         <div class="blocEquipement">
@@ -155,7 +157,6 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">Nom</th>
                   <th scope="col">Action</th>
                   <th scope="col"></th>
@@ -164,32 +165,24 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Steril fab</td>
-                  <td>
-                    <a href="" class="btn btn-primary">Afficher</a>
-                  </td>
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td>
-                    <a href="" class="btn btn-primary">Supp.</a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Osmose</td>
-                  <td>
-                    <a href="" class="btn btn-primary">Afficher</a>
-                  </td>
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td>
-                    <a href="" class="btn btn-primary">Supp.</a>
-                  </td>
-                </tr>
+                {% for equipement in equipements %}
+                  <tr>
+                    <td>{{equipement.equmarque}}</td>
+                    <td>
+                      <form action="">
+                        <button class="btn btn-success" type="submit" formaction="" formmethod="post" value="{{equipement.id}}" name="postEquId">Afficher</button>
+                      </form>
+                      {# <a href="" class="btn btn-primary">Afficher</a> #}
+                    </td>
+                    <td>
+                      <a href="" class="btn btn-primary">Edit</a>
+                    </td>
+                    <td>
+                      <a href="" class="btn btn-danger">Supp.</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+
               </tbody>
             </table>
           </div>
@@ -207,9 +200,9 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Motorola</td>
-                    <td>FUIL5263</td>
-                    <td>25365263</td>
+                    <td>{{DetailEquipement.equmarque}}</td>
+                    <td>{{DetailEquipement.equmodele}}</td>
+                    <td>{{DetailEquipement.equserie}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -231,41 +224,28 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Motorola</td>
-                    <td>FUIL5263</td>
-                    <td>25365263</td>
-                    <td>
-                      <a href="" class="btn btn-primary">Edit</a>
-                    </td>
-                    <td>
-                      <a href="" class="btn btn-primary">Supp.</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Motorola</td>
-                    <td>FUIL5263</td>
-                    <td>25365263</td>
-                    <td>
-                      <a href="" class="btn btn-primary">Edit</a>
-                    </td>
-                    <td>
-                      <a href="" class="btn btn-primary">Supp.</a>
-                    </td>
-                  </tr>
+                  {% for UnPtMesAvecCapteur in lesPtMesAvecCapteur %}
+                    <tr>
+                      <td>{{UnPtMesAvecCapteur[0].ptmesnom}}</td>
+                      <td>{{UnPtMesAvecCapteur[0].ptmesposition}}</td>
+                      <td>{{UnPtMesAvecCapteur[1].capmarque}}_:_{{UnPtMesAvecCapteur[1].capserie}}</td>
+                      <td>
+                        <a href="" class="btn btn-primary">Edit</a>
+                      </td>
+                      <td>
+                        <a href="" class="btn btn-danger">Supp.</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
                 </tbody>
               </table>
-
             </div>
             <div class="imageEquipement">
               <img src="{{ asset('images/machine-production-1.jpg') }}" alt="Symfony!"/>
             </div>
           </div>
         </div>
-        {% for equipement in equipements %}
-          <p>{{equipement.equmarque}}</p>
 
-        {% endfor %}
         <form></form>
       </div>
     </div>
