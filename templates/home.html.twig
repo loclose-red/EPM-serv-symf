@@ -3,14 +3,31 @@
 {% block title %}HOME{% endblock %}
 
 {% block body %}
-  <style>
-    .titreHome {
-      border: 1px solid black;
-    }
-  </style>
-  <h1 class="titreHome">HOME</h1>
-
-  
-  <img src="{{ asset('images/HVAC_logo.jpg') }}" alt="Symfony!"/>
+  <style></style>
+  <div class="row">
+    <img class="col-2" src="{{ asset('images/HVAC_logo.jpg') }}" alt="Symfony!"/>
+    <h1 class="titreHome col-10">HVAC FRANCE Solution de monitoring</h1>
+  </div>
+  <img class="imageHome" src="{{ asset('images/hvac-1.jpg') }}" alt="image logo HVAC"/>
+  <section class="articles row">
+    <article class="unArticle col-6">
+      <div class="row">
+        <img class="col-6" src="{{ asset('images/hvac-photo-article-1.jpg') }}" alt="photo article"/>
+        <div class="col-6">
+          <h3>Blablabla</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nobis fuga saepe voluptate tempore distinctio odio iste sapiente quam deserunt nisi ducimus laborum voluptas eligendi, repellat error exercitationem esse? Cum.</p>
+        </div>
+      </div>
+    </article>
+    <article class="unArticle col-6">
+      <div class="row">
+        <img class="col-6" src="{{ asset('images/hvac-photo-article-2.png') }}" alt="photo article"/>
+        <div class="col-6">
+          <h3>Blablabla</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nobis fuga saepe voluptate tempore distinctio odio iste sapiente quam deserunt nisi ducimus laborum voluptas eligendi, repellat error exercitationem esse? Cum.</p>
+        </div>
+      </div>
+    </article>
+  </section>
 
 {% endblock %}

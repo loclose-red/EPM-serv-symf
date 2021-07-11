@@ -72,17 +72,14 @@ class AdminBoardController extends AbstractController
             $faireReqDetailEqui = true;
             $equipementId = $session->get('sessionEquID');
         }
-        if ($nouvelleDemandeSite == false) {  // pour évité de garder le détail d'un equipement précédent quand on change de site
+        if ($nouvelleDemandeSite == false) {  // pour éviter de garder le détail d'un equipement précédent quand on change de site
             if ($faireReqDetailEqui) {
                 $DetailEquipement = $equipementRepository->findOneBy(["id" => $equipementId]);
                 $lesPtMes = $ptMesureRepository->findBy(["equipement" => $equipementId]);
+
                 //ici on fabrique un tableau "$lesPtMesAvecCapteur"
                 //chaque élément de ce tableau est un tableau "$unPtMesAvecUnCapt"
                 //un tableau $unPtMesAvecUnCapt" est constitué [{$unPtMes},{$unCapteur}]
-
-
-
-
                 foreach ($lesPtMes as $unPtMes) {
                     $unCapteur = new Capteur;
                     $unPtMesAvecUnCapt = [];

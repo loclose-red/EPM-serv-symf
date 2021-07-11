@@ -7,14 +7,52 @@
 
   <h1>Customer Board</h1>
   <img src="{{ asset('images/HVAC_logo.jpg') }}" alt="image logo HVAC"/>
-  {# <form action="" method="POST">
-    <p>{{siteSelect.sitville}}</p>
-    <select class="form-select" id='select_site' name='select_site' onchange="this.form.submit()">
-      <option name='choisir' value='null'>{{siteSelect.sitville}}</option>
-      {% for site in sites %}
-        <option name='{{site.sitville}}' value='{{ site.id }}'>Site:{{ site.sitville }}</option>
-      {% endfor %}
-    </select>
-  </form> #}
+  <div class="titreSite">
+    <h4>Site:
+      {{siteSelect.sitville}}</h4>
+  </div>
+  <div class="trancheSelection">
+    <form action="" method="POST">
+      <select class="form-select" id='postEquId' name='postEquId' onchange="this.form.submit()">
+        <option name='choisir' value='null'>Choisir equipement</option>
+        {% for equipement in equipements %}
+          <option name='{{equipement.equnom}}' value='{{ equipement.id }}'>equ:
+            {{ equipement.equmarque }}
+            {{ equipement.equmodele }}
+            {{ equipement.equserie }}</option>
+        {% endfor %}
+      </select>
+    </form>
+    <div>
+      <h3>Equipement:
+        {{DetailEquipement.equmarque}}
+        {{DetailEquipement.equmodele}}
+        {{DetailEquipement.equserie}}</h3>
+      <div class="imageEquipement">
+        <img src="{{ asset('images/'~DetailEquipement.equphoto1) }}" alt="photo equipement"/>
+      </div>
+      <div class="imageBlocGraphiques">
+        {% for UnPtMesAvecCapteurEtMesure in lesPtMesAvecCapteurEtMesures %}
+          <div class="blocUnPoint">
+            <div>
+              nom du point:{{UnPtMesAvecCapteurEtMesure[0].ptmesnom}}
+              {{UnPtMesAvecCapteurEtMesure[0].ptmesposition}}
+              capteur:
+              {{UnPtMesAvecCapteurEtMesure[1].capmarque}}_:_{{UnPtMesAvecCapteurEtMesure[1].capserie}}
+            </div>
+            <div class="imageGraphique">
+              <img src="{{ asset('images/graph_tempe.png') }}" alt="image graphique temperature"/>
+            </div>
+            <div>
+              Toutes les mesures:
+              {% for mesure in UnPtMesAvecCapteurEtMesure[2] %}
+                {{mesure.mesvaleur1}}
+                :
+              {% endfor %}
+            </div>
+          </div>
 
-{% endblock %}
+        {% endfor %}
+      </div>
+
+    {% endblock %}
