@@ -41,13 +41,13 @@ class AdminBoardController extends AbstractController
         //    Gestion render des équipements
         //////////////////////////////////////////
         if ($request->get('postSiteId')) {
-            consoleLog('dans post');
+            // consoleLog('dans post');
             $nouvelleDemandeSite = true;
             $faireReqEquipements = true;
             $siteId = $request->get('postSiteId');
             $session->set('sessionSiteID', $siteId);
         } elseif ($session->get('sessionSiteID')) {
-            consoleLog('dans session');
+            // consoleLog('dans session');
             $faireReqEquipements = true;
             $siteId = $session->get('sessionSiteID');
         }

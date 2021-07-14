@@ -1,6 +1,30 @@
 {% extends "@EasyAdmin/page/content.html.twig" %}
 
+{% block page_title %}
+  page_title
+{% endblock %}
+{% block page_actions %}
+  page_actions
+{% endblock %}
+{% block page_footer %}
+  page_footer
+{% endblock %}
+{% block main %}
+  coucou
+{% endblock %}
 {% block content %}
-  <h1>coucou</h1>
+
+  <style>
+    .easyadmin-btn-1 {
+      width: 5rem;
+    }
+    .easyadmin-btn-2 {
+      width: 7rem;
+      margin-left: 7rem;
+    }
+  </style>
+  <h1>Gestion des différentes tables</h1>
+  <a href="{{ path('home')}}" class="btn btn-outline-primary easyadmin-btn-1">Home</a>
+  <a href="{{ path('admin_board')}}" class="btn btn-outline-primary easyadmin-btn-2">Admin board</a>
 
 {% endblock %}

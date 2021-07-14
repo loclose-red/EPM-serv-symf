@@ -64,6 +64,7 @@ class Site
      */
     private $utilisateurs;
 
+
     public function __construct()
     {
         $this->equipements = new ArrayCollection();

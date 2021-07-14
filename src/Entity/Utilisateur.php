@@ -49,6 +49,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         $this->site = new ArrayCollection();
     }
 
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -169,4 +171,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    
 }

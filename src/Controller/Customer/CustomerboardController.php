@@ -27,9 +27,13 @@ class CustomerboardController extends AbstractController
         $session = new Session();
         $siteId = ""; //valeur par défaut pour dev à modifier absolument
         $faireReqEquipements = false;
+        $faireReqDetailEqui = false;
         $siteSelect = new Site;
         $equipements = [];
         $DetailEquipement = new Equipement;
+
+        // $siteId = $siteRepository->findOneBy(["user" => $actualUser])
+        // $session->set('sessionSiteID', $siteId);
 
         /////////////////////////////////////////////
         //    Gestion render des équipements
@@ -39,6 +43,7 @@ class CustomerboardController extends AbstractController
             $faireReqEquipements = true;
             $siteId = $session->get('sessionSiteID');
         }
+
 
         if ($faireReqEquipements) {
             $siteSelect = $siteRepository->findOneBy(["id" => $siteId]);
@@ -59,6 +64,7 @@ class CustomerboardController extends AbstractController
             $equipementId = $session->get('sessionEquID');
         }
 
+        $lesPtMesAvecCapteurEtMesures = [];
         if ($faireReqDetailEqui) {
             $DetailEquipement = $equipementRepository->findOneBy(["id" => $equipementId]);
             $lesPtMes = $ptMesureRepository->findBy(["equipement" => $equipementId]);
@@ -66,6 +72,7 @@ class CustomerboardController extends AbstractController
             //ici on fabrique un tableau "$lesPtMesAvecCapteurEtMesures"
             //chaque élément de ce tableau est un tableau "$unPtMesAvecUnCapt"
             //un tableau $unPtMesAvecUnCapt" est constitué [{$unPtMes},{$unCapteur},[{des mesures}]]
+
             foreach ($lesPtMes as $unPtMes) {
                 $unCapteur = new Capteur;
                 // $lesMesures = [];

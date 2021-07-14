@@ -95,8 +95,8 @@
     <div class="menuGauche col-3">
       <img src="{{ asset('images/HVAC_logo.jpg') }}" alt="image logo HVAC"/>
       <div class="blocBoutons">
-        <a href="" class="btn btn-outline-primary">Accueil</a>
-        <a href="" class="btn btn-outline-primary">Utilisateurs</a>
+        <a href="{{ path('admin')}}" class="btn btn-outline-primary">Admin global</a>
+        <a href="{{ path('utilisateur_index')}}" class="btn btn-outline-primary">Utilisateurs</a>
         <a href="" class="btn btn-outline-primary">Sites</a>
         <a href="" class="btn btn-outline-primary">Equimements</a>
         <a href="" class="btn btn-outline-primary">Points de mesures</a>
@@ -115,7 +115,7 @@
           </select>
         </form>
         <div>
-          <a href="" class="btn btn-outline-success">Voir dashboard client</a>
+          <a href="{{ path('customer_board')}}" class="btn btn-outline-success">Voir dashboard client</a>
         </div>
       </div>
       <hr>
