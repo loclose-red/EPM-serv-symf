@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Capteur;
 use App\Entity\Equipement;
 use App\Entity\Grandeur;
 use App\Entity\PtMesure;
@@ -31,13 +32,25 @@ class PtMesureCrudController extends AbstractCrudController
 
     //Création d'une fonction pour récupérer la liste des "equipements"
     //cette fonction sera utilisée pour afficher le choix des equipements pour un point de mesure
-    public function listeEquipement()
+    public function listeEquipements()
     {
         $tableauRetour = [];
         $equRepository= $this->getDoctrine()->getRepository(Equipement::class);
         $tableauListe = $equRepository->findAll();
         foreach($tableauListe as $unEqu)
             $tableauRetour[$unEqu->getEquMarque(). " : " . $unEqu->getEquSerie()] = $unEqu;
+        return $tableauRetour;
+    }
+
+    //Création d'une fonction pour récupérer la liste des "equipements"
+    //cette fonction sera utilisée pour afficher le choix des equipements pour un point de mesure
+    public function listeCapteurs()
+    {
+        $tableauRetour = [];
+        $capteurRepository= $this->getDoctrine()->getRepository(Capteur::class);
+        $tableauListe = $capteurRepository->findAll();
+        foreach($tableauListe as $unCapteur)
+            $tableauRetour[$unCapteur->getCapMarque(). " : " . $unCapteur->getCapSerie()] = $unCapteur;
         return $tableauRetour;
     }
 
@@ -50,12 +63,17 @@ class PtMesureCrudController extends AbstractCrudController
             TextField::new('equipement', 'Equipement')->onlyOnIndex(),
             //pour afficher la liste des sites dans l'édition
             ChoiceField::new('equipement', 'Equipement')
-            ->setChoices($this->listeEquipement())
+            ->setChoices($this->listeEquipements())
             ->hideOnIndex(),
             TextField::new('grandeur', 'Unité')->onlyOnIndex(),
             //pour afficher la liste des grandeurs dans l'édition
             ChoiceField::new('grandeur', 'Unité')
             ->setChoices($this->listeGrandeurs())
+            ->hideOnIndex(),
+            TextField::new('capteur', 'Capteur')->onlyOnIndex(),
+            //pour afficher la liste des capteurs dans l'édition
+            ChoiceField::new('capteur', 'Capteur')
+            ->setChoices($this->listeCapteurs())
             ->hideOnIndex(),
             BooleanField::new('pt_mes_archive', 'Archive')
         ];
