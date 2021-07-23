@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Capteur;
 use App\Entity\Grandeur;
+use App\Entity\Site;
 use App\Form\UtilisateurType;
 use App\Repository\GrandeurRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -31,6 +32,18 @@ class CapteurCrudController extends AbstractCrudController
         return $tableauRetour;
     }
 
+    //Création d'une fonction pour récupérer la liste des "sites"
+    //cette fonction sera utilisée pour afficher la liste des choix de site pour un equipement
+    public function listeSites()
+    {
+        $tableauRetour = [];
+        $siteRepository= $this->getDoctrine()->getRepository(Site::class);
+        $tableauListe = $siteRepository->findAll();
+        foreach($tableauListe as $unSite)
+            $tableauRetour[$unSite->getSitRaisonSociale()] = $unSite;
+        return $tableauRetour;
+    }
+
     
 
     public function configureFields(string $pageName): iterable
@@ -47,6 +60,18 @@ class CapteurCrudController extends AbstractCrudController
             ->hideOnIndex(),
             TextareaField::new('cap_information', 'Information'),
             BooleanField::new('cap_archive', 'Archive'),
+
+
+            //on n'affiche pas cette option dans un premier temps
+            //car peut porter à confusion
+            
+            //pour afficher le site dans l'index
+            // TextField::new('site', 'Site')->onlyOnIndex(),
+
+            //pour afficher la liste des sites dans l'édition
+            // ChoiceField::new('site', 'Site')
+            // ->setChoices($this->listeSites())
+            // ->hideOnIndex(),
                     
                                 
         ];
