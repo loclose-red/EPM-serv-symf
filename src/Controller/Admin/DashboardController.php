@@ -29,11 +29,14 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('EPM DashBoard');
+            ->setTitle('EPM DashBoard')
+            ->setTranslationDomain('admin');
     }
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::linkToRoute('Home', 'fa fa-home', 'home');
+        yield MenuItem::linkToRoute('AdminBoard', 'fa fa-home', 'admin_board');
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Capteurs', 'fas fa-list', Capteur::class);
         yield MenuItem::linkToCrud('Equipements', 'fas fa-list', Equipement::class);

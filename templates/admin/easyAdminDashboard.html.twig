@@ -1,11 +1,15 @@
+
 {% extends "@EasyAdmin/page/content.html.twig" %}
 
 {% block page_title %}
+  <h1>page title</h1>
   page_title
 {% endblock %}
+
 {% block page_actions %}
   page_actions
 {% endblock %}
+
 {% block page_footer %}
   page_footer
 {% endblock %}
@@ -14,17 +18,15 @@
 {% endblock %}
 {% block content %}
 
-  <style>
-    .easyadmin-btn-1 {
-      width: 5rem;
-    }
-    .easyadmin-btn-2 {
-      width: 7rem;
-      margin-left: 7rem;
-    }
-  </style>
-  <h1>Gestion des différentes tables</h1>
-  <a href="{{ path('home')}}" class="btn btn-outline-primary easyadmin-btn-1">Home</a>
-  <a href="{{ path('admin_board')}}" class="btn btn-outline-primary easyadmin-btn-2">Admin board</a>
+  {# Gestion des styles directement dans les balise 
+  car problème de mise en forme avec easyAdmin #}
+  <h2>Gestion des différentes tables:</h2>
+  <p style="width:300px; margin-left:2rem">
+    Veuillez sélectionner les icones à gauche,<br>
+    pour éditer les éléments de la base de données.
+  </p>
+  
+  
+
 
 {% endblock %}
