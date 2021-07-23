@@ -200,4 +200,8 @@ class Equipement
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getEquMarque() . " : " . $this->getEquSerie();
+    }
 }

@@ -21,7 +21,7 @@ class CapteurCrudController extends AbstractCrudController
         return [
             TextField::new('cap_marque', 'Marque'),
             TextField::new('cap_modele', 'Modèle'),
-            TextField::new('cap_modele', 'N° série'),
+            TextField::new('cap_serie', 'N° série'),
             TextField::new('grandeur', 'Unité')->onlyOnIndex(),
             TextareaField::new('cap_information', 'Information'),
             BooleanField::new('cap_archive', 'Archive')

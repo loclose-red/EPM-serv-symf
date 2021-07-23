@@ -219,4 +219,8 @@ class Capteur
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getCapMarque() . " : " . $this->getCapSerie();
+    }
 }
