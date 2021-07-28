@@ -7,12 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PtMesureRepository::class)
  * @ApiResource(
  *     collectionOperations={"get"},
- *     itemOperations={"get"}
+ *     itemOperations={"get"},
+ *     normalizationContext={"groups"={"ptMesure:read"}},
+ *     denormalizationContext={"groups"={"ptMesure:write"}},
  * )
  */
 class PtMesure
@@ -21,27 +24,32 @@ class PtMesure
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"ptMesure:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"ptMesure:read"})
      */
     private $pt_mes_nom;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Groups({"ptMesure:read"})
      */
     private $pt_mes_position;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"ptMesure:read"})
      */
     private $pt_mes_archive;
 
     /**
      * @ORM\ManyToOne(targetEntity=Grandeur::class, inversedBy="ptMesures")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"ptMesure:read"})
      */
     private $grandeur;
 
@@ -52,12 +60,14 @@ class PtMesure
 
     /**
      * @ORM\ManyToOne(targetEntity=Capteur::class, inversedBy="ptMesures")
+     * @Groups({"ptMesure:read"})
      */
     private $capteur;
 
     /**
      * @ORM\ManyToOne(targetEntity=Equipement::class, inversedBy="ptMesures")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"ptMesure:read"})
      */
     private $equipement;
 
