@@ -7,12 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=EquipementRepository::class)
  * @ApiResource(
  *     collectionOperations={"get"},
- *     itemOperations={"get"}
+ *     itemOperations={"get"},
+ *     normalizationContext={"groups"={"equipement:read"}},
+ *     denormalizationContext={"groups"={"equipement:write"}},
  * )
  */
 class Equipement
@@ -21,31 +24,37 @@ class Equipement
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"equipement:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"equipement:read"})
      */
     private $equ_marque;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"equipement:read"})
      */
     private $equ_modele;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"equipement:read"})
      */
     private $equ_serie;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
+     * @Groups({"equipement:read"})
      */
     private $equ_nom;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"equipement:read"})
      */
     private $equ_description;
 
@@ -56,17 +65,20 @@ class Equipement
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"equipement:read"})
      */
     private $equ_archive;
 
     /**
      * @ORM\OneToMany(targetEntity=PtMesure::class, mappedBy="equipement")
+     * @Groups({"equipement:read"})
      */
     private $ptMesures;
 
     /**
      * @ORM\ManyToOne(targetEntity=Site::class, inversedBy="equipements")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"equipement:read"})
      */
     private $site;
 
