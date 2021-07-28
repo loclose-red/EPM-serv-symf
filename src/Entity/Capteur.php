@@ -7,12 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CapteurRepository::class)
  * @ApiResource(
  *     collectionOperations={"get"},
- *     itemOperations={"get"}
+ *     itemOperations={"get"},
+ *     normalizationContext={"groups"={"capteur:read"}},
+ *     denormalizationContext={"groups"={"capteur:write"}},
  * )
  */
 class Capteur
@@ -21,21 +24,25 @@ class Capteur
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"capteur:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"capteur:read"})
      */
     private $cap_marque;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"capteur:read"})
      */
     private $cap_modele;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"capteur:read"})
      */
     private $cap_serie;
 
@@ -46,6 +53,7 @@ class Capteur
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"capteur:read"})
      */
     private $cap_archive;
 
@@ -62,11 +70,13 @@ class Capteur
 
     /**
      * @ORM\OneToMany(targetEntity=PtMesure::class, mappedBy="capteur")
+     * @Groups({"capteur:read"})
      */
     private $ptMesures;
 
     /**
      * @ORM\ManyToOne(targetEntity=Site::class, inversedBy="capteurs")
+     * @Groups({"capteur:read"})
      */
     private $site;
 
