@@ -7,12 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=SiteRepository::class)
  * @ApiResource(
  *     collectionOperations={"get"},
- *     itemOperations={"get"}
+ *     itemOperations={"get"},
+ *     normalizationContext={"groups"={"site:read"}},
+ *     denormalizationContext={"groups"={"site:write"}},
  * )
  */
 class Site
@@ -21,41 +24,49 @@ class Site
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"site:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"site:read"})
      */
     private $sit_raison_sociale;
 
     /**
      * @ORM\Column(type="string", length=120)
+     * @Groups({"site:read"})
      */
     private $sit_ville;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Groups({"site:read"})
      */
     private $sit_c_postal;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"site:read"})
      */
     private $sit_adresse;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"site:read"})
      */
     private $sit_information;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"site:read"})
      */
     private $sit_archive;
 
     /**
      * @ORM\OneToMany(targetEntity=Equipement::class, mappedBy="site")
+     * @Groups({"site:read"})
      */
     private $equipements;
 
