@@ -8,7 +8,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=MesureRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get" , "post"},
+ *     itemOperations={"get"}
+ * )
  */
 class Mesure
 {
