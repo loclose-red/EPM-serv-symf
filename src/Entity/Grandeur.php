@@ -7,12 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=GrandeurRepository::class)
  * @ApiResource(
  *     collectionOperations={"get"},
- *     itemOperations={"get"}
+ *     itemOperations={"get"},
+ *     normalizationContext={"groups"={"grandeur:read"}},
+ *     denormalizationContext={"groups"={"grandeur:write"}},
  * )
  */
 class Grandeur
@@ -21,21 +24,25 @@ class Grandeur
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"grandeur:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Groups({"grandeur:read"})
      */
     private $gra_unite;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Groups({"grandeur:read"})
      */
     private $gra_nom;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"grandeur:read"})
      */
     private $gra_archive;
 
