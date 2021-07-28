@@ -5,13 +5,14 @@ namespace App\Entity;
 use App\Repository\MesureRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass=MesureRepository::class)
  * @ApiResource(
- *     collectionOperations={"get" , "post"},
- *     itemOperations={"get"}
+ *     collectionOperations={"get","post"},
+ *     itemOperations={"get"},
  * )
+ * @ORM\Entity(repositoryClass=MesureRepository::class)
  */
 class Mesure
 {
