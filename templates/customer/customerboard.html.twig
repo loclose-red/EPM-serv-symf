@@ -42,47 +42,76 @@
             </div>
             <div class="imageGraphique">
               <img src="{{ asset('images/graph_tempe.png') }}" alt="image graphique temperature"/>
+              
             </div>
-            <div>
+            {# <div>
               Toutes les mesures:
               {% for mesure in UnPtMesAvecCapteurEtMesure[2] %}
                 {{mesure.mesvaleur1}}
                 :
               {% endfor %}
-            </div>
+            </div> #}
           </div>
 
         {% endfor %}
       </div>
-      <canvas id="myChart" width="400" height="400"></canvas>
+      <canvas id="myChart" width="400" height="200"></canvas>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js" integrity="sha512-asxKqQghC1oBShyhiBwA+YgotaSYKxGP1rcSYTDrB0U6DxwlJjU59B67U8+5/++uFjcuVM8Hh5cokLjZlhm3Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      {# <div id="data-element" data-texte="{{ equipements[0] | json_encode()}}"></div> #}
+      {# <div id="data-element" data-texte="{{ DetailEquipement.equmarque}}"></div> #}
+      <div id="data-element" data-texte="{{ lesPtMesAvecCapteurEtMesures[0][3] | json_encode()}}"></div>
+
       <script>
-          var ctx = document.getElementById('myChart').getContext('2d');
+        document.addEventListener('DOMContentLoaded', function() {
+            var elementData = document.querySelector('#data-element');
+            var data = elementData.dataset.texte;
+            //var data2 = JSON.parse(data);;
+        //console.log("récupère data from twig" + data);
+        console.log("data: " + data);
+        //console.log("data 2: " + data2);
+        });
+       
+      </script>
+     
+      
+      {#  Création des tableaux pour Chart_JS
+          Les tableaux ont été fabriqués dans le contrôleur
+          Puis sont copiés dans des tableaux javaScript pour êtres untilisés dans chart_JS
+      #}
+      <script>
+        let monTableauMesures = [];
+        let monTableauDates = [];  
+      </script>
+      {% for mesure in lesPtMesAvecCapteurEtMesures[0][3] %}
+        <script>
+          monTableauMesures.push({{mesure}});
+        </script>        
+      {% endfor %}
+      {% for date in lesPtMesAvecCapteurEtMesures[0][4] %}
+        <script>
+          monTableauDates.push("{{date}}");
+        </script>
+      {% endfor %}
+
+
+    {# construction du graphique chart_js #}
+      <script>
+      buildGraph('myChart');
+      function buildGraph(idCanvasGraph){
+
+          //var ctx = document.getElementById('myChart').getContext('2d');
+          var ctx = document.getElementById(idCanvasGraph).getContext('2d');
           var myChart = new Chart(ctx, {
-              type: 'bar',
+              type: 'line',
               data: {
-                  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                  //labels: tableauLabels,
+                  labels: monTableauDates,
                   datasets: [{
                       label: '# of Votes',
-                      data: [12, 19, 3, 5, 2, 3],
-                      backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
-                          'rgba(255, 159, 64, 0.2)'
-                      ],
-                      borderColor: [
-                          'rgba(255, 99, 132, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(255, 206, 86, 1)',
-                          'rgba(75, 192, 192, 1)',
-                          'rgba(153, 102, 255, 1)',
-                          'rgba(255, 159, 64, 1)'
-                      ],
-                      borderWidth: 1
+                      //data: tableauDatas,
+                      data: monTableauMesures,
+                      
+                      borderWidth: 3
                   }]
               },
               options: {
@@ -93,6 +122,8 @@
                   }
               }
           });
+      }
+          
       </script>
 
     {% endblock %}
