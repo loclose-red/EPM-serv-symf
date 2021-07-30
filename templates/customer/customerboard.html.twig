@@ -32,7 +32,12 @@
         <img src="{{ asset('images/'~DetailEquipement.equphoto1) }}" alt="photo equipement"/>
       </div>
       <div class="imageBlocGraphiques">
+      
+      {# {% set nouvelle = nouvelle|merge(["un-"]) %} #}
+      {# {% set nouvelle = nouvelle|merge(["deux"]) %} #}
+        {% set tableauIdPtMes = [] %} {#création d'un tableau pour stocker les id des points de mesures de l'équipement en cours#}
         {% for UnPtMesAvecCapteurEtMesure in lesPtMesAvecCapteurEtMesures %}
+          {% set tableauIdPtMes = tableauIdPtMes|merge([UnPtMesAvecCapteurEtMesure[0].id]) %}
           <div class="blocUnPoint">
             <div>
               nom du point:{{UnPtMesAvecCapteurEtMesure[0].ptmesnom}}
@@ -41,89 +46,87 @@
               {{UnPtMesAvecCapteurEtMesure[1].capmarque}}_:_{{UnPtMesAvecCapteurEtMesure[1].capserie}}
             </div>
             <div class="imageGraphique">
-              <img src="{{ asset('images/graph_tempe.png') }}" alt="image graphique temperature"/>
+              {# <img src="{{ asset('images/graph_tempe.png') }}" alt="image graphique temperature"/> #}
+
+
+              {# -------------------------------------------------------------------------------------------------------- #}
+              {# ---------------------------Block de construction d'un graphique chart_js-------------------------------- #}
+                {# balise pour graphique #}
+              <canvas id="myChart_{{ UnPtMesAvecCapteurEtMesure[0].id}}" width="100%" height="70%"></canvas>
+                {# passage des données de twig vers JS (voir doc symfony) #}
+              <div id="data-element_{{ UnPtMesAvecCapteurEtMesure[0].id}}" 
+                  data-mesures="{{ UnPtMesAvecCapteurEtMesure[2] | json_encode()}}"
+                  data-dates="{{ UnPtMesAvecCapteurEtMesure[3] | json_encode()}}"
+              ></div>
+              <script>
+              var id_ptMesure = "{{UnPtMesAvecCapteurEtMesure[0].id}}";
+              getDataAndBuildGraph(id_ptMesure);      
+              
+              {# -------------------------------------------------------------------------------------------------------- #}
+
+              
+              {# préparation à la construction d'un graphique: #}
+              {# on récupère les données puis on lance la construction #}
+              function getDataAndBuildGraph(id_ptmes){  //cette fonction récupère les données de la <div id="data-element> (voir doc Symfony) 
+                let id_graphique = "myChart_" + id_ptmes;
+                console.log("id du graphique: " + id_graphique);
+                let dates = "";
+                let mesures = "";
+                document.addEventListener('DOMContentLoaded', function() {
+                    let elementData = document.querySelector('#data-element_' + id_ptmes);
+                    mesures = JSON.parse(elementData.dataset.mesures);
+                    dates = JSON.parse(elementData.dataset.dates);
+                console.log("mesures: " + mesures);
+                console.log("dates: " + dates);
+                //On appelle la fonction de construction graphique chart_js
+                buildGraph(id_graphique,mesures,dates);
+                });
+              };
+
+              {# construction du graphique chart_js #}
+              function buildGraph(idCanvasGraph,grMesures,grDates){
+                  //var ctx = document.getElementById('myChart').getContext('2d');
+                  var ctx = document.getElementById(idCanvasGraph).getContext('2d');
+                  var myChart = new Chart(ctx, {
+                      type: 'line',
+                      data: {
+                          //labels: tableauLabels,
+                          //labels: monTableauDates,
+                          labels: grDates,
+                          datasets: [{
+                              label: 'températures',
+                              //data: tableauDatas,
+                              //data: monTableauMesures,
+                              data: grMesures,
+                              
+                              borderWidth: 3
+                          }]
+                      },
+                      options: {
+                          scales: {
+                              y: {
+                                  beginAtZero: true
+                              }
+                          }
+                      }
+                  });
+              }
+                  
+              </script>
+
+
+
+
               
             </div>
-            {# <div>
-              Toutes les mesures:
-              {% for mesure in UnPtMesAvecCapteurEtMesure[2] %}
-                {{mesure.mesvaleur1}}
-                :
-              {% endfor %}
-            </div> #}
           </div>
 
         {% endfor %}
       </div>
-      <canvas id="myChart" width="400" height="200"></canvas>
+      {{dump(tableauIdPtMes)}}
+      <div id="data-IdPtMes" 
+                  data-tableauIdPtMes="{{ tableauIdPtMes | json_encode()}}"
+      ></div>
 
-      {# <div id="data-element" data-texte="{{ equipements[0] | json_encode()}}"></div> #}
-      {# <div id="data-element" data-texte="{{ DetailEquipement.equmarque}}"></div> #}
-      <div id="data-element" data-texte="{{ lesPtMesAvecCapteurEtMesures[0][3] | json_encode()}}"></div>
-
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elementData = document.querySelector('#data-element');
-            var data = elementData.dataset.texte;
-            //var data2 = JSON.parse(data);;
-        //console.log("récupère data from twig" + data);
-        console.log("data: " + data);
-        //console.log("data 2: " + data2);
-        });
-       
-      </script>
-     
-      
-      {#  Création des tableaux pour Chart_JS
-          Les tableaux ont été fabriqués dans le contrôleur
-          Puis sont copiés dans des tableaux javaScript pour êtres untilisés dans chart_JS
-      #}
-      <script>
-        let monTableauMesures = [];
-        let monTableauDates = [];  
-      </script>
-      {% for mesure in lesPtMesAvecCapteurEtMesures[0][3] %}
-        <script>
-          monTableauMesures.push({{mesure}});
-        </script>        
-      {% endfor %}
-      {% for date in lesPtMesAvecCapteurEtMesures[0][4] %}
-        <script>
-          monTableauDates.push("{{date}}");
-        </script>
-      {% endfor %}
-
-
-    {# construction du graphique chart_js #}
-      <script>
-      buildGraph('myChart');
-      function buildGraph(idCanvasGraph){
-
-          //var ctx = document.getElementById('myChart').getContext('2d');
-          var ctx = document.getElementById(idCanvasGraph).getContext('2d');
-          var myChart = new Chart(ctx, {
-              type: 'line',
-              data: {
-                  //labels: tableauLabels,
-                  labels: monTableauDates,
-                  datasets: [{
-                      label: '# of Votes',
-                      //data: tableauDatas,
-                      data: monTableauMesures,
-                      
-                      borderWidth: 3
-                  }]
-              },
-              options: {
-                  scales: {
-                      y: {
-                          beginAtZero: true
-                      }
-                  }
-              }
-          });
-      }
-          
-      </script>
 
     {% endblock %}

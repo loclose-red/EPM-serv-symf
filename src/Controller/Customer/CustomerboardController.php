@@ -72,7 +72,7 @@ class CustomerboardController extends AbstractController
 
             //ici on fabrique un tableau "$lesPtMesAvecCapteurEtMesures"
             //chaque élément de ce tableau est un tableau "$unPtMesAvecUnCapt"
-            //un tableau $unPtMesAvecUnCapt" est constitué [{$unPtMes},{$unCapteur},[{des mesures}],[mes_val_1,...],[date,...]]
+            //un tableau $unPtMesAvecUnCapt" est constitué [{$unPtMes},{$unCapteur},[mes_val_1,...],[date,...]]
 
 
             //on fabrique aussi un tableau qui sera utilisé par chart_JS
@@ -87,7 +87,6 @@ class CustomerboardController extends AbstractController
                 $lesMesures = $mesureRepository->findBy(["ptmesure" => $unPtMes]);
                 $unPtMesAvecUnCaptEtMesures[] = $unPtMes;
                 $unPtMesAvecUnCaptEtMesures[] = $unCapteur;
-                $unPtMesAvecUnCaptEtMesures[] = $lesMesures;
                 //Traitements pour fabriquer des tableaux qui seront ulilisés par chart_JS
                 //Talbeau des Valeurs_1 et des dates associées
                 $lesValeurs_1 = [];

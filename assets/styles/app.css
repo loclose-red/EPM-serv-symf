@@ -47,7 +47,9 @@ body {
 }
 .blocUnPoint{
     margin: 1rem;
+    width: 50%;
 }
-.imageGraphique img{
-    width: 30rem;
+.imageGraphique{
+    width: 100%;
 }
+
