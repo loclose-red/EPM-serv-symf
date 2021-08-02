@@ -194,4 +194,85 @@ class RemplirTablesController extends AbstractController
             'controller_name' => 'RemplirTablesController',
         ]);
     }
+    /**
+     * @Route("/remplir/tablesmesures", name="remplir_tables_mesures")
+     */
+    public function indexTablesMesures(): Response
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        
+
+        // récupération de lobjet site de rennes
+
+        $repositorySite = $this->getDoctrine()->getRepository(Site::class);
+        $monSiteRennes = $repositorySite->findOneBy([
+            'sit_ville' => 'Rennes',
+        ]);
+
+        
+        /////////////////////////////////////////////
+        //       remplir points de mesures pour un equipement du site Rennes
+        /////////////////////////////////////////////
+
+        //récupération de lobjet d'un equipement (le premier) du site de Rennes
+        $repositorySite = $this->getDoctrine()->getRepository(Equipement::class);
+        $unEquipementRennes = $repositorySite->findOneBy([
+            'site' => $monSiteRennes,
+        ]);
+
+        //récupération de lobjet grandeur Deg_C
+        $repositoryGrand = $this->getDoctrine()->getRepository(Grandeur::class);
+        $grandeurDegC = $repositoryGrand->findOneBy([
+            'gra_unite' => 'Deg_C',
+        ]);
+
+        /////////////////////////////////////////////
+        //       remplir mesures
+        /////////////////////////////////////////////
+
+        //récupération de lobjet du premier capteur trouvé
+        $repositorySite = $this->getDoctrine()->getRepository(Capteur::class);
+        $unCapteur = $repositorySite->findOneBy(['id' => 2]);
+
+        //récupération de lobjet du premier point de mesure du premier capteur du site Rennes
+        $repositoryPtMes = $this->getDoctrine()->getRepository(PtMesure::class);
+        $unPtDeMes = $repositoryPtMes->findOneBy([
+            'equipement' => $unEquipementRennes, 'id' => 22
+        ]);
+        //dd($unPtDeMes);
+
+        $json = file_get_contents("../src/DataJson/mesures.json");
+        $parsed_json = json_decode($json);
+        $untab = $parsed_json->{'mesures'};
+        foreach ($untab as $key => $value) {
+            $mesure = new Mesure();
+            $mesure->setGrandeur($grandeurDegC);
+            $mesure->setMesValeur1($value->{'val1'});
+            $mesure->setCapteur($unCapteur);
+
+            //création d'un objet date avec les string date time du fichier json
+            //on concatène date et time
+            $uneDateStr = $value->{'date'} . " " . $value->{'time'};
+            //création de l'objet datetime
+            $uneDate = new DateTime();
+            //on transforme str datetime en timestamp, puis on l'affecte à l'objet datetime
+            $uneDate->setTimestamp(strtotime($uneDateStr));
+            $mesure->setMesDate($uneDate);
+
+            $mesure->setPtmesure($unPtDeMes);
+
+            $entityManager->persist($mesure);
+        }
+
+
+
+        $entityManager->flush();
+
+
+        return $this->render('remplir_tables/index.html.twig', [
+            'controller_name' => 'RemplirTablesController',
+        ]);
+    }
 }

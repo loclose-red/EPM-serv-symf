@@ -1,6 +1,3 @@
-console.log('dans fichier js')
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -36,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mesuresGraphique = JSON.parse(entryMesures[index]);
         //mise en forme du tableau des dates passées à la construction du graphique
         datesGraphique = JSON.parse(entryDates[index]);
-        
+
         buildGraph(idGraphique,mesuresGraphique,datesGraphique)
     })
 

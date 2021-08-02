@@ -39,7 +39,6 @@ class CustomerboardController extends AbstractController
         //    Gestion render des équipements
         //////////////////////////////////////////
         if ($session->get('sessionSiteID')) {
-            consoleLog('dans session');
             $faireReqEquipements = true;
             $siteId = $session->get('sessionSiteID');
         }
@@ -55,7 +54,6 @@ class CustomerboardController extends AbstractController
         //    Gestion render du détail d'un équipement
         //////////////////////////////////////////
         if ($request->get('postEquId')) {
-            consoleLog('dans post detail equi: ' . $request->get('postEquId'));
             $faireReqDetailEqui = true;
             $equipementId = $request->get('postEquId');
             $session->set('sessionEquID', $equipementId);

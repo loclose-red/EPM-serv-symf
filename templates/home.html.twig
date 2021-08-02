@@ -3,31 +3,45 @@
 {% block title %}HOME{% endblock %}
 
 {% block body %}
+
+<div class="container" style="background:url('{{ asset('images/industrial-concept.jpg') }}') no-repeat center">
   <style></style>
   <div class="row">
-    <img class="col-2" src="{{ asset('images/HVAC_logo.jpg') }}" alt="Symfony!"/>
-    <h1 class="titreHome col-10">HVAC FRANCE Solution de monitoring</h1>
+    
+    <h1 class="titreHome col-10"><div>SMART TECH VILLAGE</div><div>Solution de monitoring</div></h1>
   </div>
-  <img class="imageHome" src="{{ asset('images/hvac-1.jpg') }}" alt="image logo HVAC"/>
+  <div class="image_1">
+    {# <img class="imageHome" src="{{ asset('images/industrial-concept.jpg') }}" alt="image logo HVAC"/> #}
+  </div>
+
+
   <section class="articles row">
-    <article class="unArticle col-6">
+
+    <div class="unArticle col-6">
+    <article>
       <div class="row">
         <img class="col-6" src="{{ asset('images/hvac-photo-article-1.jpg') }}" alt="photo article"/>
-        <div class="col-6">
-          <h3>Blablabla</h3>
+        <div class="col-6 article-texte">
+          <h3 class="article-titre">consectetur</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nobis fuga saepe voluptate tempore distinctio odio iste sapiente quam deserunt nisi ducimus laborum voluptas eligendi, repellat error exercitationem esse? Cum.</p>
         </div>
       </div>
     </article>
-    <article class="unArticle col-6">
+    </div>
+    <div class="unArticle col-6">
+    <article>
       <div class="row">
         <img class="col-6" src="{{ asset('images/hvac-photo-article-2.png') }}" alt="photo article"/>
         <div class="col-6">
-          <h3>Blablabla</h3>
+          <h3>adipisicing</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nobis fuga saepe voluptate tempore distinctio odio iste sapiente quam deserunt nisi ducimus laborum voluptas eligendi, repellat error exercitationem esse? Cum.</p>
         </div>
       </div>
     </article>
+    </div>
+    
   </section>
+  <div class="marge"></div>
+</div>
 
 {% endblock %}

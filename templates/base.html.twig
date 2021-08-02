@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+{# <html style="background:url('{{ asset('images/industrial-concept.jpg') }}') no-repeat center"> #}
+<html >
   <head>
     <meta charset="UTF-8">
     <title>
@@ -16,7 +17,6 @@
     {% block javascripts %}
       {{ encore_entry_script_tags('app') }}
       <script>
-        console.log("test java script dans base.html.twig");
       </script>
 
       {# implémentation de Chart_JS #}
@@ -28,24 +28,50 @@
     {% endblock %}
 
   </head>
+
+
+
   <header>
+    <div class="logo">
+      <img class="col-2" src="{{ asset('images/STV-Logo-V_02.png') }}" alt="Symfony!"/>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="{{ path('home')}}">Home</a>
-            <a class="nav-link active" aria-current="page" href="{{ path('app_login')}}">login</a>
-            <a class="nav-link active" aria-current="page" href="{{ path('app_logout')}}">logout</a>
+            
+            <a class="navbar-brand" aria-current="page" href="{{ path('home')}}">Home</a>
+            <a class="navbar-brand" aria-current="page" href="{{ path('app_login')}}">login</a>
+            <a class="navbar-brand" aria-current="page" href="{{ path('app_logout')}}">logout</a>
           </div>
         </div>
       </div>
     </nav>
   </header>
-  <body class="container">
+
+
+
+  
+  {# <body class="container" style="background:url('{{ asset('images/industrial-concept.jpg') }}') no-repeat center"> #}
+  <body class="container" >
     {% block body %}{% endblock %}
   </body>
+
+<footer>
+
+    <ul>
+      {# <li><a class="navbar-brand" aria-current="page" href="{{ path('home')}}">Contacter nous</a></li> #}
+      {# <li><a class="navbar-brand" aria-current="page" href="{{ path('app_login')}}">mentions légales</a></li> #}
+      <li><a class="navbar-brand" aria-current="page" href="#">Contacter nous</a></li>
+      <li><a class="navbar-brand" aria-current="page" href="#">mentions légales</a></li>
+    
+    </ul>
+
+    <div class="logoFooter">
+      <img class="col-2" src="{{ asset('images/STV -Bannière- FR-V_02 .png') }}" alt="Symfony!"/>
+    </div>
+</footer>
+
 </html>
