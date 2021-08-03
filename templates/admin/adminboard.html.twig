@@ -5,107 +5,33 @@
 {% block body %}
 
   <style>
-    h1 {
-      text-align: center;
-      margin: 2rem;
-    }
-    img {
-      /* width: 10rem; */
-      /* height: 10rem; */
-      /* margin: 2rem; */
-    }
-    .menuGauche {
-      display: flex;
-      flex-direction: column;
-    }
-    .blocBoutons {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid grey;
-      border-radius: 1rem;
-    }
-    .blocBoutons .btn {
-      margin: 1rem 2rem;
-    }
-    .trancheSelection {
-      display: flex;
-    }
-    .trancheSelection form {
-      margin-right: 1rem;
-    }
-    h3 {
-      margin-right: 1rem;
-    }
-
-    .titreUtilisateur {
-      display: flex;
-      margin: 1rem;
-    }
-    .blocTitreEquipement {
-      display: flex;
-
-    }
-    .titreListePoints {
-      display: flex;
-    }
-    .imageEquipement {
-      width: 40rem;
-    }
-    .imageEquipement img {
-      width: 40rem;
-      margin-left: 6rem;
-      margin-right: auto;
-    }
-    .blocTableauUtilisateur {
-      border: 1px solid grey;
-      border-radius: 1rem;
-    }
-    .blocTableauUtilisateur table {
-      margin: 1rem;
-      width: 95%;
-    }
-    .blocEquipement {
-      border: 1px solid grey;
-      border-radius: 1rem;
-    }
-    .blocEquipement h3 {
-      margin-left: 1rem;
-    }
-    .blocTitreEquipement {
-      margin: 1rem;
-    }
-    .tableauEquipements table {
-      margin: 1rem;
-      width: 95%;
-    }
-    .blocDetailEquipement {
-      margin: 1rem;
-      border: 1px solid grey;
-      border-radius: 1rem;
-    }
-    .blocDetailEquipement table {
-      margin: 1rem;
-      width: 95%;
-    }
+    
+    
   </style>
-  <div class="example-wrapper">
-    <h1>Tableau de bord administrateur</h1>
-  </div>
+  
   <main class="row">
-
-    <div class="menuGauche col-3">
+<i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue;"></i>
+    <div class="menuGauche col-2">
       {# <img src="{{ asset('images/HVAC_logo.jpg') }}" alt="image logo HVAC"/> #}
       <div class="blocBoutons">
-        <a href="{{ path('admin')}}" class="btn btn-outline-primary">Admin global</a>
-        <a href="{{ path('utilisateur_index')}}" class="btn btn-outline-primary">Utilisateurs</a>
-        <a href="" class="btn btn-outline-primary">Sites</a>
-        <a href="" class="btn btn-outline-primary">Equimements</a>
-        <a href="" class="btn btn-outline-primary">Points de mesures</a>
-        <a href="" class="btn btn-outline-primary">Capteurs</a>
+        <div >
+          <h3>Tableau de bord administrateur</h3>
+        </div>
+        {# <a href="{{ path('admin')}}" class="btn btn-outline-primary">Admin global</a> #}
+        
+        <a href="{{ path('admin')}}" class="">
+          Admin global
+          <i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue;"></i>
+        </a>
+        <a href="{{ path('utilisateur_index')}}" class="">Utilisateurs</a>
+        <a href="" class="">Sites</a>
+        <a href="" class="">Equimements</a>
+        <a href="" class="">Points de mesures</a>
+        <a href="" class="">Capteurs</a>
       </div>
     </div>
 
-    <div class="pageDroite col-9">
+    <div class="pageDroite col-10">
       <div class="trancheSelection">
         <form action="" method="POST">
           <select class="form-select" id='select_site' name='postSiteId' onchange="this.form.submit()">

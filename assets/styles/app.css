@@ -137,7 +137,88 @@ footer ul a{
     text-align: center;
     
 }
+h1 {
+    text-align: center;
+    margin: 2rem;
+}
 
+.menuGauche {
+    display: flex;
+    flex-direction: column;
+}
+.blocBoutons {
+    background-color: rgb(40, 92, 62);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* border: 3px solid rgb(8, 41, 15); */
+    /* border-radius: 1rem; */
+    height: 100%;
+}
+.blocBoutons .btn {
+    margin: 1rem 2rem;
+}
+.trancheSelection {
+    display: flex;
+}
+.trancheSelection form {
+    margin-right: 1rem;
+}
+h3 {
+    margin-right: 1rem;
+}
+
+.titreUtilisateur {
+    display: flex;
+    margin: 1rem;
+}
+.blocTitreEquipement {
+    display: flex;
+
+}
+.titreListePoints {
+    display: flex;
+}
+.imageEquipement {
+    width: 40rem;
+}
+.imageEquipement img {
+    width: 40rem;
+    margin-left: 6rem;
+    margin-right: auto;
+}
+.blocTableauUtilisateur {
+    border: 1px solid grey;
+    border-radius: 1rem;
+}
+.blocTableauUtilisateur table {
+    margin: 1rem;
+    width: 95%;
+}
+.blocEquipement {
+    border: 1px solid grey;
+    border-radius: 1rem;
+}
+.blocEquipement h3 {
+    margin-left: 1rem;
+}
+.blocTitreEquipement {
+    margin: 1rem;
+}
+.tableauEquipements table {
+    margin: 1rem;
+    width: 95%;
+}
+.blocDetailEquipement {
+    margin: 1rem;
+    border: 1px solid grey;
+    border-radius: 1rem;
+}
+.blocDetailEquipement table {
+    margin: 1rem;
+    width: 95%;
+}
 
 /*///////////////////////////////////////////////////////*/
 /* page client */
