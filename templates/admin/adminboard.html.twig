@@ -10,24 +10,42 @@
   </style>
   
   <main class="row">
-<i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue;"></i>
+<i class="bi-alarm-clock"></i>
+<svg class="bi" width="32" height="32" fill="currentColor">
+  <use xlink:href="bootstrap-icons.svg#alarm-clock"/>
+</svg>
     <div class="menuGauche col-2">
       {# <img src="{{ asset('images/HVAC_logo.jpg') }}" alt="image logo HVAC"/> #}
       <div class="blocBoutons">
-        <div >
-          <h3>Tableau de bord administrateur</h3>
+        <div class="titreBlocBoutons">
+          <h3>Tableau de bord</h3>
         </div>
         {# <a href="{{ path('admin')}}" class="btn btn-outline-primary">Admin global</a> #}
         
         <a href="{{ path('admin')}}" class="">
-          Admin global
-          <i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue;"></i>
+          <img class="icone_btn" src="{{ asset('images/wallet2.svg') }}" alt="Bootstrap" width="32" height="32">
+          Admin global          
         </a>
-        <a href="{{ path('utilisateur_index')}}" class="">Utilisateurs</a>
-        <a href="" class="">Sites</a>
-        <a href="" class="">Equimements</a>
-        <a href="" class="">Points de mesures</a>
-        <a href="" class="">Capteurs</a>
+        <a href="{{ path('utilisateur_index')}}" class="">
+          <img class="icone_btn" src="{{ asset('images/person-lines-fill.svg') }}" alt="Bootstrap" width="32" height="32">
+          Utilisateurs
+        </a>
+        <a href="" class="">
+          <img class="icone_btn" src="{{ asset('images/building.svg') }}" alt="Bootstrap" width="32" height="32">
+          Sites
+        </a>
+        <a href="" class="">
+          <img class="icone_btn" src="{{ asset('images/safe2.svg') }}" alt="Bootstrap" width="32" height="32">
+          Equimements
+        </a>
+        <a href="" class="">
+          <img class="icone_btn" src="{{ asset('images/record-circle.svg') }}" alt="Bootstrap" width="32" height="32">
+          Pts de mesures
+        </a>
+        <a href="" class="">
+          <img class="icone_btn" src="{{ asset('images/fullscreen.svg') }}" alt="Bootstrap" width="32" height="32">
+          Capteurs
+        </a>
       </div>
     </div>
 
@@ -56,6 +74,7 @@
           <h3>Utilisateurs</h3>
           <a href="" class="btn btn-outline-primary">Ajouter Utilisateur</a>
         </div>
+          
 
         <div class="blocTableauUtilisateur">
           <table class="table">
@@ -86,7 +105,7 @@
 
       <div class="trancheEquipements">
         <div class="blocTitreEquipement">
-          <h3>Equipements</h3>
+          <h3 class="titreEquipements">Equipements</h3>
           <a href="" class="btn btn-outline-primary">Ajouter equipement</a>
         </div>
         <div class="blocEquipement">
@@ -107,7 +126,7 @@
                     <td>{{equipement.equmarque}}</td>
                     <td>
                       <form action="">
-                        <button class="btn btn-outline-success" type="submit" formaction="" formmethod="post" value="{{equipement.id}}" name="postEquId">Afficher</button>
+                        <button class="btn btn-outline-success" type="submit" formaction="" formmethod="post" value="{{equipement.id}}" name="postEquId">Afficher détail</button>
                       </form>
                       {# <a href="" class="btn btn-primary">Afficher</a> #}
                     </td>
@@ -123,11 +142,13 @@
               </tbody>
             </table>
           </div>
+          <div class="blocDetailEquipement">
+          <div class="titreDetailEquipement">
           <h3>Detail equipement:
             {{DetailEquipement.equmarque}}
             {{DetailEquipement.equmodele}}
             {{DetailEquipement.equserie}}</h3>
-          <div class="blocDetailEquipement">
+          </div>
             <div class="detailEquipHead">
               <table class="table">
                 <thead>
@@ -147,40 +168,42 @@
                 </tbody>
               </table>
             </div>
-            <div class="titreListePoints">
-              <h3>Liste des points</h3>
-              <a href="" class="btn btn-outline-primary">Ajouter un point</a>
-            </div>
-            <div class="tableauDesPoints">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Nom du pt.</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Capteur associé</th>
-                    <th scope="col">Action</th>
-                    <th scope="col"></th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for UnPtMesAvecCapteur in lesPtMesAvecCapteur %}
+            <div class="blocListeDesPoints">
+              <div class="titreListePoints">
+                <h3>Liste des points</h3>
+                <a href="" class="btn btn-outline-primary">Ajouter un point</a>
+              </div>
+              <div class="tableauDesPoints">
+                <table class="table">
+                  <thead>
                     <tr>
-                      <td>{{UnPtMesAvecCapteur[0].ptmesnom}}</td>
-                      <td>{{UnPtMesAvecCapteur[0].ptmesposition}}</td>
-                      <td>{{UnPtMesAvecCapteur[1].capmarque}}_:_{{UnPtMesAvecCapteur[1].capserie}}</td>
-                      <td>
-                        <a href="" class="btn btn-outline-primary">Edit</a>
-                      </td>
-                      <td>
-                        <a href="" class="btn btn-outline-danger">Supp.</a>
-                      </td>
+                      <th scope="col">Nom du pt.</th>
+                      <th scope="col">Position</th>
+                      <th scope="col">Capteur associé</th>
+                      <th scope="col">Action</th>
+                      <th scope="col"></th>
+
                     </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {% for UnPtMesAvecCapteur in lesPtMesAvecCapteur %}
+                      <tr>
+                        <td>{{UnPtMesAvecCapteur[0].ptmesnom}}</td>
+                        <td>{{UnPtMesAvecCapteur[0].ptmesposition}}</td>
+                        <td>{{UnPtMesAvecCapteur[1].capmarque}}_:_{{UnPtMesAvecCapteur[1].capserie}}</td>
+                        <td>
+                          <a href="" class="btn btn-outline-primary">Edit</a>
+                        </td>
+                        <td>
+                          <a href="" class="btn btn-outline-danger">Supp.</a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="imageEquipement">
+            <div class="DBA_imageEquipement">
               <img src="{{ asset('images/'~DetailEquipement.equphoto1) }}" alt="photo equipement"/>
             </div>
           </div>

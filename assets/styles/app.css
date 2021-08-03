@@ -20,9 +20,18 @@ body {
 /*///////////////////////////////////////////////////////*/
 .navbar{
     margin: 1rem;
-    background-color: rgba(152, 251, 113, 0.7) !important;
+    /* background-color: rgba(152, 251, 113, 0.7) !important; */
+    background-color: rgb(40, 92, 62) !important;
     width: 100%;
     border-radius: 1rem;
+}
+.navbar-brand{
+    
+}
+.ancresNav{
+    color: white !important;
+    font-weight: bold;
+
 }
 header{
     margin-top: 1rem;
@@ -85,11 +94,11 @@ footer ul a{
 }
 
 .titreHome{
-    background-color: rgba(152, 251, 113, 0.7);
+    background-color: rgba(40, 92, 62, 0.705);
     padding: 1rem;
     margin-top: 4rem;
     margin-bottom: 4rem;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -109,7 +118,8 @@ footer ul a{
 }
 .unArticle article{
     padding: 1rem;
-    background-color: rgba(152, 251, 113, 0.7);;
+    background-color: rgba(40, 92, 62, 0.705);
+    color: white;
     border-radius: 1rem;
     width: 80%;
 }
@@ -133,6 +143,11 @@ footer ul a{
 /*///////////////////////////////////////////////////////*/
 /* page admin */
 /*///////////////////////////////////////////////////////*/
+main{
+    background-color: rgb(234, 255, 230);
+    border-radius: 1rem;
+}
+
 .titreSite h4{
     text-align: center;
     
@@ -156,6 +171,18 @@ h1 {
     /* border-radius: 1rem; */
     height: 100%;
 }
+
+.blocBoutons a{
+    margin-bottom: 2rem;
+    color: white;
+}
+.titreBlocBoutons{
+    margin-bottom: 2rem;
+}
+
+.icone_btn{
+    margin-right: 1rem;
+}
 .blocBoutons .btn {
     margin: 1rem 2rem;
 }
@@ -169,36 +196,45 @@ h3 {
     margin-right: 1rem;
 }
 
-.titreUtilisateur {
-    display: flex;
-    margin: 1rem;
-}
-.blocTitreEquipement {
-    display: flex;
+
+.trancheUtilisateurs{
+    /* border: 1px solid grey; */
+    background-color: rgb(201, 230, 204);
+    border-radius: 1rem;
+    box-shadow:  5px 5px 5px rgb(200, 200, 200);
 
 }
-.titreListePoints {
-    display: flex;
-}
-.imageEquipement {
-    width: 40rem;
-}
-.imageEquipement img {
-    width: 40rem;
-    margin-left: 6rem;
-    margin-right: auto;
-}
 .blocTableauUtilisateur {
-    border: 1px solid grey;
-    border-radius: 1rem;
+    
 }
 .blocTableauUtilisateur table {
     margin: 1rem;
     width: 95%;
 }
-.blocEquipement {
-    border: 1px solid grey;
+.titreUtilisateur {
+    padding-top: 1rem;
+    display: flex;
+    margin: 1rem;
+}
+
+
+.trancheEquipements{
+    background-color: rgb(201, 230, 204);
     border-radius: 1rem;
+    box-shadow:  5px 5px 5px rgb(200, 200, 200);
+
+}
+.blocEquipement {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+}
+.blocTitreEquipement {
+    display: flex;
+    padding-top: 1rem ;
+
+}
+.titreEquipements{
+
 }
 .blocEquipement h3 {
     margin-left: 1rem;
@@ -212,23 +248,96 @@ h3 {
 }
 .blocDetailEquipement {
     margin: 1rem;
-    border: 1px solid grey;
+    padding-bottom: 1rem;
+    /* border: 1px solid grey; */
     border-radius: 1rem;
+    background-color: rgb(181, 212, 183);
 }
 .blocDetailEquipement table {
     margin: 1rem;
     width: 95%;
 }
+.titreDetailEquipement{
+    /* margin-top: 2rem; */
+    padding-top: 1rem;
+}
+
+
+.blocListeDesPoints{
+    margin: 1rem;
+    background-color: rgb(201, 230, 204);
+    border: 1px solid grey;
+    border-radius: 1rem;
+}
+
+.titreListePoints {
+    margin: 1rem;
+    display: flex;
+}
+.imageEquipement {
+    width: 40rem;
+}
+.DBA_imageEquipement img {
+    display: block;
+    width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 
 /*///////////////////////////////////////////////////////*/
 /* page client */
 /*///////////////////////////////////////////////////////*/
-.imageBlocGraphiques{
+
+.blocSiteComplet{
+    background-color: rgb(201, 230, 204);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.DBC_titreSite{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.DBC_trancheSelection{
+    display: flex;
+    justify-content: center;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    background-color: rgb(181, 212, 183);
+    height: 4rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.DBC_trancheSelection form{
+    margin-right: 2rem;
+}
+.DBC_titre_tranchSelection{
+}
+.DBC_imageEquipement{
+    
+}
+.DBC_imageEquipement img{
+    display: block;
+    width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    box-shadow:  5px 5px 5px rgb(200, 200, 200);
+}
+
+.BlocDesGraphiques{
     display: flex;
 }
+
 .blocUnPoint{
     margin: 1rem;
+    padding: 1rem;
     width: 50%;
+    background-color: rgb(181, 212, 183);
+    box-shadow:  5px 5px 5px rgb(200, 200, 200);
 }
 .imageGraphique{
     width: 100%;
