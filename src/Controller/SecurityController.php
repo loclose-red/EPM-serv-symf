@@ -30,7 +30,6 @@ class SecurityController extends AbstractController
         $session = new Session();
         // si on est déjà loger, on est redirigé vers la page adminboard ou user sur le premier site ou l'accueil
         if ($this->getUser()) {
-            consoleLog('logger');
             $actualUser = $this->getUser();
             $roleUser = $actualUser->getRoles();
             $roleName = $actualUser->getLogname();
@@ -46,7 +45,6 @@ class SecurityController extends AbstractController
             if ($roleUser[0] == "ROLE_USER") {
                 $premmierSiteUserTrouve = $actualUser->getSite()->current();
                 if ($premmierSiteUserTrouve != false) {
-                    // consoleLog('site trouvé pour l utilisateur');
                     $session->set('sessionSiteID', $premmierSiteUserTrouve->getId());
                     $unsite = new Site;
                     $unsite->getEquipements();
@@ -61,9 +59,7 @@ class SecurityController extends AbstractController
                 }
                 return $this->redirectToRoute('customer_board');
             }
-            // consoleLog($roleUser[0] . " " . $roleName);
         }
-        consoleLog('in login');
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

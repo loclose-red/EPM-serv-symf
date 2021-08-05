@@ -62,7 +62,6 @@ class AdminBoardController extends AbstractController
         //    Gestion render du détail d'un équipement
         //////////////////////////////////////////
         if ($request->get('postEquId')) {
-            consoleLog('dans post detail equi: ' . $request->get('postEquId'));
             $faireReqDetailEqui = true;
             $equipementId = $request->get('postEquId');
             $session->set('sessionEquID', $equipementId);
@@ -92,8 +91,6 @@ class AdminBoardController extends AbstractController
 
 
         // if ($request->get('postSiteId')) {
-        //     consoleLog('dans if...');
-        //     consoleLog($request->get('postSiteId'));
         //     $siteId = $request->get('postSiteId');
         //     $siteSelect = $siteRepository->findOneBy(["id" => $siteId]);
         //     $session->set('sessionSiteID', $siteSelect->getId());
