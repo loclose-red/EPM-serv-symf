@@ -60,6 +60,7 @@ class Equipement
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Groups({"equipement:read"})
      */
     private $equ_photo_1;
 
