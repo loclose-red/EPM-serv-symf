@@ -10,9 +10,18 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
  * @UniqueEntity(fields={"logname"}, message="There is already an account with this logname")
+ * @ApiResource(
+ *     collectionOperations={"get"},
+ *     itemOperations={"get"},
+ *     normalizationContext={"groups"={"utilisateur:read"}},
+ *     denormalizationContext={"groups"={"utilisateur:write"}},
+ * )
  */
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -20,22 +29,26 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"utilisateur:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"utilisateur:read"})
      */
     private $logname;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"utilisateur:read"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups({"utilisateur:read"})
      */
     private $password;
 
