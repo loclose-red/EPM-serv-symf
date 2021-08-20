@@ -54,6 +54,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Site::class, inversedBy="utilisateurs")
+     * @Groups({"utilisateur:read"})
      */
     private $site;
 
