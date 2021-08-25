@@ -4,10 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\Capteur;
 use App\Entity\Equipement;
+use App\Entity\Mesure;
 use App\Entity\PtMesure;
 use App\Entity\Site;
 use App\Repository\CapteurRepository;
 use App\Repository\EquipementRepository;
+use App\Repository\MesureRepository;
 use App\Repository\PtMesureRepository;
 use App\Repository\SiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -113,5 +115,27 @@ class AdminBoardController extends AbstractController
             'lesPtMes' => $lesPtMes,
             'lesPtMesAvecCapteur' => $lesPtMesAvecCapteur,
         ]);
+    }
+    /**
+     * @Route("/test", name="test")
+     */
+    public function test(Request $request, CapteurRepository $capteurRepository, MesureRepository $mesureRepository): Response
+    {
+        $newMesure = new Mesure;
+        $uneMesure = $mesureRepository->findOneBy([]);
+        $newMesure->setCapteur($uneMesure->getCapteur());
+        $newMesure->setMesValeur1($uneMesure->getMesValeur1());
+        $newMesure->setMesDate($uneMesure->getMesDate());
+        $newMesure->setCapteur($uneMesure->getCapteur());
+        $newMesure->setGrandeur($uneMesure->getGrandeur());
+        $newMesure->setPtmesure($uneMesure->getPtmesure());
+
+        $ojbJson = ["testKey" => "valeur test"];
+        $newMesure->setMesObjJson($ojbJson);
+        // dd($newMesure);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($newMesure);
+        $entityManager->flush();
+        return $this->redirectToRoute('admin_board');
     }
 }
