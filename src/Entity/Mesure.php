@@ -71,6 +71,11 @@ class Mesure
      */
     private $ptmesure;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $mes_obj_json = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -180,6 +185,18 @@ class Mesure
     public function setPtmesure(?PtMesure $ptmesure): self
     {
         $this->ptmesure = $ptmesure;
+
+        return $this;
+    }
+
+    public function getMesObjJson(): ?array
+    {
+        return $this->mes_obj_json;
+    }
+
+    public function setMesObjJson(?array $mes_obj_json): self
+    {
+        $this->mes_obj_json = $mes_obj_json;
 
         return $this;
     }
