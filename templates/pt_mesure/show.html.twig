@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PtMesure{% endblock %}
+
+{% block body %}
+    <h1>PtMesure</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pt_mesure.id }}</td>
+            </tr>
+            <tr>
+                <th>Pt_mes_nom</th>
+                <td>{{ pt_mesure.ptMesNom }}</td>
+            </tr>
+            <tr>
+                <th>Pt_mes_position</th>
+                <td>{{ pt_mesure.ptMesPosition }}</td>
+            </tr>
+            <tr>
+                <th>Pt_mes_archive</th>
+                <td>{{ pt_mesure.ptMesArchive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('pt_mesure_index') }}">back to list</a>
+
+    <a href="{{ path('pt_mesure_edit', {'id': pt_mesure.id}) }}">edit</a>
+
+    {{ include('pt_mesure/_delete_form.html.twig') }}
+{% endblock %}

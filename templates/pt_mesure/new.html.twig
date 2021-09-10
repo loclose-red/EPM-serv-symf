@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New PtMesure{% endblock %}
+
+{% block body %}
+    <h1>Create new PtMesure</h1>
+
+    {{ include('pt_mesure/_form.html.twig') }}
+
+    <a href="{{ path('pt_mesure_index') }}">back to list</a>
+{% endblock %}
