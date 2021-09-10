@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Capteur{% endblock %}
+
+{% block body %}
+    <h1>Capteur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ capteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Cap_marque</th>
+                <td>{{ capteur.capMarque }}</td>
+            </tr>
+            <tr>
+                <th>Cap_modele</th>
+                <td>{{ capteur.capModele }}</td>
+            </tr>
+            <tr>
+                <th>Cap_serie</th>
+                <td>{{ capteur.capSerie }}</td>
+            </tr>
+            <tr>
+                <th>Cap_information</th>
+                <td>{{ capteur.capInformation }}</td>
+            </tr>
+            <tr>
+                <th>Cap_archive</th>
+                <td>{{ capteur.capArchive ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Cap_macadress</th>
+                <td>{{ capteur.capMacadress }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('capteur_index') }}">back to list</a>
+
+    <a href="{{ path('capteur_edit', {'id': capteur.id}) }}">edit</a>
+
+    {{ include('capteur/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Capteur index{% endblock %}
+
+{% block body %}
+    <h1>Capteur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cap_marque</th>
+                <th>Cap_modele</th>
+                <th>Cap_serie</th>
+                <th>Cap_information</th>
+                <th>Cap_archive</th>
+                <th>Cap_macadress</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for capteur in capteurs %}
+            <tr>
+                <td>{{ capteur.id }}</td>
+                <td>{{ capteur.capMarque }}</td>
+                <td>{{ capteur.capModele }}</td>
+                <td>{{ capteur.capSerie }}</td>
+                <td>{{ capteur.capInformation }}</td>
+                <td>{{ capteur.capArchive ? 'Yes' : 'No' }}</td>
+                <td>{{ capteur.capMacadress }}</td>
+                <td>
+                    <a href="{{ path('capteur_show', {'id': capteur.id}) }}">show</a>
+                    <a href="{{ path('capteur_edit', {'id': capteur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('capteur_new') }}">Create new</a>
+{% endblock %}
