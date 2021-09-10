@@ -80,6 +80,12 @@ class Capteur
      */
     private $site;
 
+    /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+     * @Groups({"capteur:read"})
+     */
+    private $cap_macadress;
+
     public function __construct()
     {
         $this->mesures = new ArrayCollection();
@@ -237,5 +243,17 @@ class Capteur
     public function __toString()
     {
         return $this->getCapMarque() . " : " . $this->getCapSerie();
+    }
+
+    public function getCapMacadress(): ?string
+    {
+        return $this->cap_macadress;
+    }
+
+    public function setCapMacadress(?string $cap_macadress): self
+    {
+        $this->cap_macadress = $cap_macadress;
+
+        return $this;
     }
 }
