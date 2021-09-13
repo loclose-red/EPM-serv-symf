@@ -17,7 +17,7 @@
 
     {% block javascripts %}
       {{ encore_entry_script_tags('app') }}
-      <script>
+      <script type="text/javascript">
       </script>
 
       {# implémentation de Chart_JS #}
@@ -31,7 +31,8 @@
   </head>
 
 
-
+<pre>
+</pre>
   <header>
     <div class="logo">
       <img class="col-2" src="{{ asset('images/STV-Logo-V_02.png') }}" alt="Symfony!"/>
@@ -46,6 +47,7 @@
             <a class="navbar-brand ancresNav" aria-current="page" href="{{ path('home')}}">Home</a>
             <a class="navbar-brand ancresNav" aria-current="page" href="{{ path('app_login')}}">login</a>
             <a class="navbar-brand ancresNav" aria-current="page" href="{{ path('app_logout')}}">logout</a>
+            {% block link %}{% endblock %}
           </div>
         </div>
       </div>
@@ -63,16 +65,9 @@
 <footer>
 
     <ul>
-      {# <li><a class="navbar-brand" aria-current="page" href="{{ path('home')}}">Contacter nous</a></li> #}
-      {# <li><a class="navbar-brand" aria-current="page" href="{{ path('app_login')}}">mentions légales</a></li> #}
-
       <li><a class="navbar-brand" aria-current="page" href="{{ path('contact_public')}}">Contactez nous</a></li>
       <li><a class="navbar-brand" aria-current="page" href="{{ path('a_propos')}}">A propos</a></li>
-      <li><a class="navbar-brand" aria-current="page" href="{{ path('mentions_legales')}}">mentions légales</a></li>
-      {# <li><a class="navbar-brand" aria-current="page" href="#">Contactez nous</a></li> #}
-      {# <li><a class="navbar-brand" aria-current="page" href="#">A propos</a></li> #}
-      {# <li><a class="navbar-brand" aria-current="page" href="#">mentions légales</a></li> #}
-    
+      <li><a class="navbar-brand" aria-current="page" href="{{ path('mentions_legales')}}">mentions légales</a></li>   
     </ul>
 
     <div class="logoFooter">

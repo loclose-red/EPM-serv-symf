@@ -14,8 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
-
-
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 
 class CustomerboardController extends AbstractController
 {
@@ -104,7 +103,8 @@ class CustomerboardController extends AbstractController
             // dd($lesPtMesAvecCapteurEtMesures);
         }
 
-
+        
+        // dd($this->getUser()->getRoles()[0]);
 
 
 
@@ -115,6 +115,7 @@ class CustomerboardController extends AbstractController
             'DetailEquipement' => $DetailEquipement,
             'lesPtMesAvecCapteurEtMesures' => $lesPtMesAvecCapteurEtMesures,
             'controller_name' => 'CustomerboardController',
+            'role' => $this->getUser()->getRoles()[0]
         ]);
     }
 }

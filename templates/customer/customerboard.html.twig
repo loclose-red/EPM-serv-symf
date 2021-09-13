@@ -1,4 +1,10 @@
 {% extends 'base.html.twig' %}
+{% block link %}
+  {% if role == 'ROLE_ADMIN' %}
+    <a class="navbar-brand ancresNav" aria-current="page" href="{{ path('admin_board')}}">Tableau de bord</a>
+  {% endif %}
+{% endblock %}  
+
 
 {% block title %}Customerboard{% endblock %}
 
