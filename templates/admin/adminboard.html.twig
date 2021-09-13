@@ -72,7 +72,7 @@
       <div class="trancheUtilisateurs">
         <div class="titreUtilisateur">
           <h3>Utilisateurs</h3>
-          <a href="" class="btn btn-outline-primary">Ajouter Utilisateur</a>
+          <a href="{{ path('app_register')}}" class="btn btn-outline-primary">Ajouter Utilisateur</a>
         </div>
           
 
@@ -90,10 +90,10 @@
                 <tr>
                   <td>{{utilisateur.logname}}</td>
                   <td>
-                    <a href="" class="btn btn-outline-primary">Edit</a>
+                    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id})}}" class="btn btn-outline-primary">Edit</a>
                   </td>
                   <td>
-                    <a href="" class="btn btn-outline-danger">Supp.</a>
+                    <a href="{{ path('utilisateur_delete', {'id': utilisateur.id})}}" class="btn btn-outline-danger">Supp.</a>
                   </td>
                 </tr>
               {% endfor %}
@@ -106,7 +106,7 @@
       <div class="trancheEquipements">
         <div class="blocTitreEquipement">
           <h3 class="titreEquipements">Equipements</h3>
-          <a href="" class="btn btn-outline-primary">Ajouter equipement</a>
+          <a href="{{ path('equipement_new')}}" class="btn btn-outline-primary">Ajouter equipement</a>
         </div>
         <div class="blocEquipement">
           <div class="tableauEquipements">
@@ -131,10 +131,10 @@
                       {# <a href="" class="btn btn-primary">Afficher</a> #}
                     </td>
                     <td>
-                      <a href="" class="btn btn-outline-primary">Edit</a>
+                      <a href="{{ path('equipement_edit', {'id': equipement.id})}}" class="btn btn-outline-primary">Edit</a>
                     </td>
                     <td>
-                      <a href="" class="btn btn-outline-danger">Supp.</a>
+                      <a href="{{ path('equipement_delete', {'id': equipement.id})}}" class="btn btn-outline-danger">Supp.</a>
                     </td>
                   </tr>
                 {% endfor %}
@@ -170,8 +170,8 @@
             </div>
             <div class="blocListeDesPoints">
               <div class="titreListePoints">
-                <h3>Liste des points</h3>
-                <a href="" class="btn btn-outline-primary">Ajouter un point</a>
+                <h3>Liste des points</h3>pt_mesure_new
+                <a href="{{ path('pt_mesure_new')}}" class="btn btn-outline-primary">Ajouter un point</a>
               </div>
               <div class="tableauDesPoints">
                 <table class="table">
@@ -192,10 +192,10 @@
                         <td>{{UnPtMesAvecCapteur[0].ptmesposition}}</td>
                         <td>{{UnPtMesAvecCapteur[1].capmarque}}_:_{{UnPtMesAvecCapteur[1].capserie}}</td>
                         <td>
-                          <a href="" class="btn btn-outline-primary">Edit</a>
+                          <a href="{{ path('pt_mesure_edit', {'id': UnPtMesAvecCapteur[0].id})}}" class="btn btn-outline-primary">Edit</a>
                         </td>
                         <td>
-                          <a href="" class="btn btn-outline-danger">Supp.</a>
+                          <a href="{{ path('pt_mesure_delete', {'id': UnPtMesAvecCapteur[0].id})}}" class="btn btn-outline-danger">Supp.</a>
                         </td>
                       </tr>
                     {% endfor %}
