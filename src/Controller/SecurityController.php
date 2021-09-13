@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Contact;
+use App\Form\ContactType;
 
 class SecurityController extends AbstractController
 {
@@ -78,13 +81,28 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contactpublic", name="contact_public")
      */
-    public function contact(): Response
+    public function contact(Request $request): Response
     {
-        
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
 
-        return $this->render('contact.html.twig');
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+
+            // return $this->redirectToRoute('contact_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->renderForm('contact.html.twig', [
+            'contact' => $contact,
+            'form' => $form,
+        ]);
+
     }
 
     /**
