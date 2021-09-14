@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 /**
  * @ORM\Entity(repositoryClass=EquipementRepository::class)
  * @ApiResource(
@@ -17,6 +20,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"={"equipement:read"}},
  *     denormalizationContext={"groups"={"equipement:write"}},
  * )
+ * @Vich\Uploadable
  */
 class Equipement
 {
@@ -65,6 +69,15 @@ class Equipement
     private $equ_photo_1;
 
     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="equipement_photos", fileNameProperty="equ_photo_1")
+     * 
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"equipement:read"})
      */
@@ -82,6 +95,11 @@ class Equipement
      * @Groups({"equipement:read"})
      */
     private $site;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -165,6 +183,22 @@ class Equipement
         return $this;
     }
 
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
     public function getEquArchive(): ?bool
     {
         return $this->equ_archive;
@@ -221,5 +255,17 @@ class Equipement
     public function __toString()
     {
         return $this->getEquMarque() . " : " . $this->getEquSerie();
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }
