@@ -210,7 +210,8 @@
               </div>
             </div>
             <div class="DBA_imageEquipement">
-              <img src="{{ asset('images/'~DetailEquipement.equphoto1) }}" alt="photo equipement"/>
+              {# <img src="{{ asset('images/'~DetailEquipement.equphoto1) }}" alt="photo equipement"/> #}
+              <img src="{{ vich_uploader_asset(DetailEquipement,'imageFile') }}" alt="photo equipement"/>
             </div>
           </div>
         </div>
