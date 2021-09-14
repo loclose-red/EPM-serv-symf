@@ -1,4 +1,37 @@
+<style>
+    .testgg {
+    }
+    .vich-image a img{
+        height: 300px;
+    }
+    
+</style>
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {# {{ form_widget(form) }} #}
+    <div class="col">
+            {{ form_row(form.equ_nom) }}
+    </div>
+    <div class="col">
+            {{ form_row(form.equ_marque) }}
+    </div>
+    <div class="col">
+            {{ form_row(form.equ_modele) }}
+    </div>
+    <div class="col">
+            {{ form_row(form.equ_serie) }}
+    </div>
+    <div class="col">
+            {{ form_row(form.equ_description) }}
+    </div>
+    <div class="col">
+            {{ form_row(form.imageFile,{'attr': {'class': 'testgg'}}) }}
+    </div>
+    <div class="col">
+            {{ form_row(form.site) }}
+    </div>
+    <div class="col">
+            {{ form_row(form.equ_archive) }}
+    </div>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

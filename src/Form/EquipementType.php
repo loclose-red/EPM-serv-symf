@@ -14,12 +14,12 @@ class EquipementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('equ_nom')
             ->add('equ_marque')
             ->add('equ_modele')
             ->add('equ_serie')
-            ->add('equ_nom')
             ->add('equ_description')
-            ->add('equ_photo_1')
+            // ->add('equ_photo_1')
             ->add('imageFile', VichImageType::class,[
                 'required' => false,
                 'allow_delete' => false,
@@ -27,10 +27,9 @@ class EquipementType extends AbstractType
                 'download_uri' => false,
                 // 'download_label' => '...',
                 'asset_helper' => false,
-                'dimensions' => 100,
             ])
-            ->add('equ_archive')
             ->add('site')
+            ->add('equ_archive')
         ;
     }
 
