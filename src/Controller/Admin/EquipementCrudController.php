@@ -7,8 +7,11 @@ use App\Entity\Site;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class EquipementCrudController extends AbstractCrudController
 {
@@ -38,6 +41,9 @@ class EquipementCrudController extends AbstractCrudController
             TextField::new('equ_modele', 'Modèle'),
             TextField::new('equ_serie', 'N° série'),
             TextareaField::new('equ_description', 'Description'),
+            
+            TextField::new('imageFile')->setFormType(VichImageType::class),
+            ImageField::new('equ_photo_1')->setBasePath('/uploads/photos')->onlyOnIndex(),
             //pour afficher le site dans l'index
             TextField::new('site', 'Site')->onlyOnIndex(),
             //pour afficher la liste des sites dans l'édition
