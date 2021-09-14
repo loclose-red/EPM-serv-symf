@@ -42,7 +42,12 @@ class EquipementCrudController extends AbstractCrudController
             TextField::new('equ_serie', 'N° série'),
             TextareaField::new('equ_description', 'Description'),
             
-            TextField::new('imageFile')->setFormType(VichImageType::class),
+            TextField::new('imageFile')->setFormType(VichImageType::class)
+                                        ->setFormTypeOptions([
+                                            'allow_delete' => false,
+                                            'required' => false,
+                                            'asset_helper' => false,
+                                        ]),
             ImageField::new('equ_photo_1')->setBasePath('/uploads/photos')->onlyOnIndex(),
             //pour afficher le site dans l'index
             TextField::new('site', 'Site')->onlyOnIndex(),
