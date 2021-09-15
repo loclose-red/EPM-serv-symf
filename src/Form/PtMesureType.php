@@ -12,12 +12,12 @@ class PtMesureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pt_mes_nom')
-            ->add('pt_mes_position')
-            ->add('pt_mes_archive')
-            ->add('grandeur')
-            ->add('capteur')
-            ->add('equipement')
+            ->add('pt_mes_nom',null,['label' => 'Nom'])
+            ->add('pt_mes_position',null,['label' => 'Position'])
+            ->add('grandeur',null,['label' => 'Grandeur'])
+            ->add('capteur',null,['label' => 'Capteur'])
+            ->add('equipement',null,['label' => 'Equipement'])
+            ->add('pt_mes_archive',null,['label' => 'Archiver'])
         ;
     }
 

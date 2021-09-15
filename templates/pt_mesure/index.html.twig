@@ -5,37 +5,37 @@
 {% block title %}PtMesure index{% endblock %}
 
 {% block body %}
-    <h1>PtMesure index</h1>
+    <h1>Liste des points de mesure</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Pt_mes_nom</th>
-                <th>Pt_mes_position</th>
-                <th>Pt_mes_archive</th>
-                <th>actions</th>
+                {# <th>Id</th> #}
+                <th>Nom</th>
+                <th>Position</th>
+                <th>Archive</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for pt_mesure in pt_mesures %}
             <tr>
-                <td>{{ pt_mesure.id }}</td>
+                {# <td>{{ pt_mesure.id }}</td> #}
                 <td>{{ pt_mesure.ptMesNom }}</td>
                 <td>{{ pt_mesure.ptMesPosition }}</td>
                 <td>{{ pt_mesure.ptMesArchive ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('pt_mesure_show', {'id': pt_mesure.id}) }}">show</a>
-                    <a href="{{ path('pt_mesure_edit', {'id': pt_mesure.id}) }}">edit</a>
+                    {# <a href="{{ path('pt_mesure_show', {'id': pt_mesure.id}) }}">show</a> #}
+                    <a class="btn btn-success" href="{{ path('pt_mesure_edit', {'id': pt_mesure.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas d'enregistrement de trouvé!</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('pt_mesure_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('pt_mesure_new') }}">Nouveau</a>
 {% endblock %}

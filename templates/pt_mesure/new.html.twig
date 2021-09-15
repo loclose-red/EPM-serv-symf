@@ -5,9 +5,9 @@
 {% block title %}New PtMesure{% endblock %}
 
 {% block body %}
-    <h1>Create new PtMesure</h1>
+    <h1>Création nouveau point de mesure</h1>
 
     {{ include('pt_mesure/_form.html.twig') }}
 
-    <a href="{{ path('pt_mesure_index') }}">back to list</a>
+    <a class="btn btn-outline-success" href="{{ path('pt_mesure_index') }}">Retour liste</a>
 {% endblock %}
