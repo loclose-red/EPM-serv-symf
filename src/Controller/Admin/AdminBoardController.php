@@ -74,20 +74,27 @@ class AdminBoardController extends AbstractController
         if ($nouvelleDemandeSite == false) {  // pour éviter de garder le détail d'un equipement précédent quand on change de site
             if ($faireReqDetailEqui) {
                 $DetailEquipement = $equipementRepository->findOneBy(["id" => $equipementId, 'equ_archive' => false]);
-                $lesPtMes = $ptMesureRepository->findBy(["equipement" => $equipementId, 'pt_mes_archive' =>  false]);
 
-                //ici on fabrique un tableau "$lesPtMesAvecCapteur"
-                //chaque élément de ce tableau est un tableau "$unPtMesAvecUnCapt"
-                //un tableau $unPtMesAvecUnCapt" est constitué [{$unPtMes},{$unCapteur}]
-                foreach ($lesPtMes as $unPtMes) {
-                    $unCapteur = new Capteur;
-                    $unPtMesAvecUnCapt = [];
-                    $unCapteur = $unPtMes->getCapteur();
-                    $unPtMesAvecUnCapt[] = $unPtMes;
-                    $unPtMesAvecUnCapt[] = $unCapteur;
-                    $lesPtMesAvecCapteur[] = $unPtMesAvecUnCapt;
+                //condition mise en place pour ne rien afficher si un équimement à été archivé
+                if ($DetailEquipement == null) {
+                    $DetailEquipement = new Equipement;
+                }else{
+            
+                    $lesPtMes = $ptMesureRepository->findBy(["equipement" => $equipementId, 'pt_mes_archive' =>  false]);
+
+                    //ici on fabrique un tableau "$lesPtMesAvecCapteur"
+                    //chaque élément de ce tableau est un tableau "$unPtMesAvecUnCapt"
+                    //un tableau $unPtMesAvecUnCapt" est constitué [{$unPtMes},{$unCapteur}]
+                    foreach ($lesPtMes as $unPtMes) {
+                        $unCapteur = new Capteur;
+                        $unPtMesAvecUnCapt = [];
+                        $unCapteur = $unPtMes->getCapteur();
+                        $unPtMesAvecUnCapt[] = $unPtMes;
+                        $unPtMesAvecUnCapt[] = $unCapteur;
+                        $lesPtMesAvecCapteur[] = $unPtMesAvecUnCapt;
+                    }
+                    // dd($lesPtMesAvecCapteur);
                 }
-                // dd($lesPtMesAvecCapteur);
             }
         }
 
