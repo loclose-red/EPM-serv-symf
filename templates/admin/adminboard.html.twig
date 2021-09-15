@@ -100,9 +100,9 @@
                   </td>
                   <td>
                     {# Bout de code récupéré du twig "crud" utilisateur #}
-                    <form method="post" action="{{ path('utilisateur_delete', {'id': utilisateur.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <form method="post" action="{{ path('utilisateur_delete', {'id': utilisateur.id}) }}" onsubmit="return confirm('Souhaitez vous supprimer cet utilisateur?');">
                       <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ utilisateur.id) }}">
-                      <button class="btn btn-outline-danger">Delete</button>
+                      <button class="btn btn-outline-danger">Supprimer</button>
                     </form>
                   </td>
                 </tr>
@@ -143,9 +143,9 @@
                     <td>
                       <a href="{{ path('equipement_edit', {'id': equipement.id})}}" class="btn btn-outline-primary">Edit</a>
                     </td>
-                    <td>
+                    {# <td>
                       <a href="{{ path('equipement_delete', {'id': equipement.id})}}" class="btn btn-outline-danger">Supp.</a>
-                    </td>
+                    </td> #}
                   </tr>
                 {% endfor %}
 
@@ -204,9 +204,9 @@
                         <td>
                           <a href="{{ path('pt_mesure_edit', {'id': UnPtMesAvecCapteur[0].id})}}" class="btn btn-outline-primary">Edit</a>
                         </td>
-                        <td>
+                        {# <td>
                           <a href="{{ path('pt_mesure_delete', {'id': UnPtMesAvecCapteur[0].id})}}" class="btn btn-outline-danger">Supp.</a>
-                        </td>
+                        </td> #}
                       </tr>
                     {% endfor %}
                   </tbody>
