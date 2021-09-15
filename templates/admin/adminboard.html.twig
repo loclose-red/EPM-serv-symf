@@ -77,8 +77,8 @@
       <hr>
       <div class="trancheUtilisateurs">
         <div class="titreUtilisateur">
-          <h3>Utilisateurs</h3>
-          <a href="{{ path('app_register')}}" class="btn btn-outline-primary">Ajouter Utilisateur</a>
+          <h3>Utilisateur</h3>
+          <a href="{{ path('site_edit', {'id': siteSelect.id})}}" class="btn btn-outline-primary">Changer Utilisateur</a>
         </div>
           
 
@@ -99,7 +99,11 @@
                     <a href="{{ path('utilisateur_edit', {'id': utilisateur.id})}}" class="btn btn-outline-primary">Edit</a>
                   </td>
                   <td>
-                    <a href="{{ path('utilisateur_delete', {'id': utilisateur.id})}}" class="btn btn-outline-danger">Supp.</a>
+                    {# Bout de code récupéré du twig "crud" utilisateur #}
+                    <form method="post" action="{{ path('utilisateur_delete', {'id': utilisateur.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                      <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ utilisateur.id) }}">
+                      <button class="btn btn-outline-danger">Delete</button>
+                    </form>
                   </td>
                 </tr>
               {% endfor %}

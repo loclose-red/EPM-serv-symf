@@ -3,7 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-  <h1>Register</h1>
+  <h1>Nouvel utilisateur</h1>
 
   {{ form_start(registrationForm) }}
   {{ form_row(registrationForm.logname) }}
@@ -11,7 +11,7 @@
             label: 'Password'
         }) }}
   {{ form_row(registrationForm.roles) }}
-  {{ form_row(registrationForm.agreeTerms) }}
+  {# {{ form_row(registrationForm.agreeTerms) }} #}
 
   <button type="submit" class="btn btn-primary">Enregistrer</button>
   {{ form_end(registrationForm) }}
