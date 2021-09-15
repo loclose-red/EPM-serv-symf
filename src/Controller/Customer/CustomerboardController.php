@@ -57,8 +57,13 @@ class CustomerboardController extends AbstractController
             $equipementId = $request->get('postEquId');
             $session->set('sessionEquID', $equipementId);
         } elseif ($session->get('sessionEquID')) {
-            $faireReqDetailEqui = true;
             $equipementId = $session->get('sessionEquID');
+            $unEquipementTemp = $equipementRepository->findOneBy(["id" => $equipementId]);
+
+            //on n'affiche pas l'équipement et son détail si il à été archivé dans la session en cours
+            if(!$unEquipementTemp->getEquArchive()){
+                $faireReqDetailEqui = true;
+            }
         }
 
         $lesPtMesAvecCapteurEtMesures = [];
