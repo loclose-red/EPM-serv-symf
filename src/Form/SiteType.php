@@ -12,13 +12,13 @@ class SiteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('sit_raison_sociale')
-            ->add('sit_ville')
-            ->add('sit_c_postal')
-            ->add('sit_adresse')
-            ->add('sit_information')
-            ->add('sit_archive')
-            ->add('utilisateurs')
+            ->add('sit_raison_sociale', null, ['label' => 'Raison sociale'])
+            ->add('sit_ville', null, ['label' => 'Ville'])
+            ->add('sit_c_postal', null, ['label' => 'Code postal'])
+            ->add('sit_adresse', null, ['label' => 'Adresse'])
+            ->add('sit_information', null, ['label' => 'Information'])
+            ->add('utilisateurs', null, ['label' => 'Utilisateur'])
+            ->add('sit_archive', null, ['label' => 'Archiver'])
         ;
     }
 

@@ -10,20 +10,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Sit_raison_sociale</th>
-                <th>Sit_ville</th>
-                <th>Sit_c_postal</th>
-                <th>Sit_adresse</th>
-                <th>Sit_information</th>
-                <th>Sit_archive</th>
-                <th>actions</th>
+                {# <th>Id</th> #}
+                <th>Raison sociale</th>
+                <th>Ville</th>
+                <th>Code postal</th>
+                <th>Adresse</th>
+                <th>Information</th>
+                <th>Archive</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for site in sites %}
             <tr>
-                <td>{{ site.id }}</td>
+                {# <td>{{ site.id }}</td> #}
                 <td>{{ site.sitRaisonSociale }}</td>
                 <td>{{ site.sitVille }}</td>
                 <td>{{ site.sitCPostal }}</td>
@@ -31,17 +31,17 @@
                 <td>{{ site.sitInformation }}</td>
                 <td>{{ site.sitArchive ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('site_show', {'id': site.id}) }}">show</a>
-                    <a href="{{ path('site_edit', {'id': site.id}) }}">edit</a>
+                    {# <a href="{{ path('site_show', {'id': site.id}) }}">show</a> #}
+                    <a class="btn btn-success" href="{{ path('site_edit', {'id': site.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Pas d'enregistrement de trouvé!</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('site_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('site_new') }}">Nouveau</a>
 {% endblock %}
