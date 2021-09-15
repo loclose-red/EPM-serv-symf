@@ -2,28 +2,28 @@
 {% block link %}<a class="navbar-brand ancresNav" aria-current="page" href="{{ path('admin_board')}}">Tableau de bord</a>{% endblock %}
 
 
-{% block title %}Contact index{% endblock %}
+{% block title %}Contact list{% endblock %}
 
 {% block body %}
-    <h1>Contact index</h1>
+    <h1>Liste des contacts</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Nom</th>
-                <th>Prenom</th>
-                <th>Societe</th>
+                <th>Prénom</th>
+                <th>Société</th>
                 <th>Email</th>
-                <th>Phone</th>
+                <th>Téléphone</th>
                 <th>Message</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for contact in contacts %}
             <tr>
-                <td>{{ contact.id }}</td>
+                {# <td>{{ contact.id }}</td> #}
                 <td>{{ contact.nom }}</td>
                 <td>{{ contact.prenom }}</td>
                 <td>{{ contact.societe }}</td>
@@ -31,17 +31,17 @@
                 <td>{{ contact.phone }}</td>
                 <td>{{ contact.message }}</td>
                 <td>
-                    <a href="{{ path('contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('contact_edit', {'id': contact.id}) }}">edit</a>
+                    {# <a href="{{ path('contact_show', {'id': contact.id}) }}">show</a> #}
+                    <a class="btn btn-success" href="{{ path('contact_edit', {'id': contact.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Pas d'enregistrement de trouvé!</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('contact_new') }}">Create new</a>
+    {# <a href="{{ path('contact_new') }}">Create new</a> #}
 {% endblock %}
