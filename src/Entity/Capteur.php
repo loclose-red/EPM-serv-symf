@@ -55,7 +55,7 @@ class Capteur
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"capteur:read"})
      */
-    private $cap_archive;
+    private $cap_archive = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=Grandeur::class, inversedBy="capteurs")

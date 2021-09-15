@@ -44,7 +44,7 @@ class PtMesure
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"ptMesure:read"})
      */
-    private $pt_mes_archive;
+    private $pt_mes_archive = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=Grandeur::class, inversedBy="ptMesures")

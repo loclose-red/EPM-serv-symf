@@ -81,7 +81,7 @@ class Equipement
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"equipement:read"})
      */
-    private $equ_archive;
+    private $equ_archive = false;
 
     /**
      * @ORM\OneToMany(targetEntity=PtMesure::class, mappedBy="equipement")

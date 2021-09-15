@@ -51,7 +51,7 @@ class Mesure
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $mes_archive;
+    private $mes_archive = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=Grandeur::class, inversedBy="mesures")

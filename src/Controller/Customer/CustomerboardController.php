@@ -45,7 +45,7 @@ class CustomerboardController extends AbstractController
 
         if ($faireReqEquipements) {
             $siteSelect = $siteRepository->findOneBy(["id" => $siteId]);
-            $equipements = $equipementRepository->findBy(["site" => $siteId]);
+            $equipements = $equipementRepository->findBy(["site" => $siteId, 'equ_archive' => false]);
             // $utilisateurs = $siteSelect->getUtilisateurs();
         }
 
@@ -65,7 +65,7 @@ class CustomerboardController extends AbstractController
         $elementPourGraphiquesChartJs = [];
         if ($faireReqDetailEqui) {
             $DetailEquipement = $equipementRepository->findOneBy(["id" => $equipementId]);
-            $lesPtMes = $ptMesureRepository->findBy(["equipement" => $equipementId]);
+            $lesPtMes = $ptMesureRepository->findBy(["equipement" => $equipementId, 'pt_mes_archive' =>  false]);
 
             //ici on fabrique un tableau "$lesPtMesAvecCapteurEtMesures"
             //chaque élément de ce tableau est un tableau "$unPtMesAvecUnCapt"

@@ -44,7 +44,7 @@ class Grandeur
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"grandeur:read"})
      */
-    private $gra_archive;
+    private $gra_archive = false;
 
     /**
      * @ORM\OneToMany(targetEntity=Capteur::class, mappedBy="grandeur")

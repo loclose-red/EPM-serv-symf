@@ -62,7 +62,7 @@ class Site
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"site:read"})
      */
-    private $sit_archive;
+    private $sit_archive = false;
 
     /**
      * @ORM\OneToMany(targetEntity=Equipement::class, mappedBy="site")
