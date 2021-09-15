@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Equipement;
 use App\Entity\Site;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -58,6 +59,12 @@ class EquipementCrudController extends AbstractCrudController
             // TextField::new('equ_photo_1', 'Photo (nom)'),
             BooleanField::new('equ_archive', 'Archive')
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+        ->setDefaultSort(['equ_archive' => 'ASC']);
     }
     
 }

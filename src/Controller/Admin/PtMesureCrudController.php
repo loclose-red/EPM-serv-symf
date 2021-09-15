@@ -6,6 +6,7 @@ use App\Entity\Capteur;
 use App\Entity\Equipement;
 use App\Entity\Grandeur;
 use App\Entity\PtMesure;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -77,6 +78,11 @@ class PtMesureCrudController extends AbstractCrudController
             ->hideOnIndex(),
             BooleanField::new('pt_mes_archive', 'Archive')
         ];
+    }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+        ->setDefaultSort(['pt_mes_archive' => 'ASC']);
     }
     
 }

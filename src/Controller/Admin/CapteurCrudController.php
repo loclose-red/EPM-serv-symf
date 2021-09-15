@@ -7,6 +7,7 @@ use App\Entity\Grandeur;
 use App\Entity\Site;
 use App\Form\UtilisateurType;
 use App\Repository\GrandeurRepository;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -75,6 +76,11 @@ class CapteurCrudController extends AbstractCrudController
                     
                                 
         ];
+    }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+        ->setDefaultSort(['cap_archive' => 'ASC']);
     }
     
 }

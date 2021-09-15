@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Site;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
@@ -26,6 +27,12 @@ class SiteCrudController extends AbstractCrudController
             TextareaField::new('sit__information', 'Information'),
             BooleanField::new('sit_archive', 'Archive')
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+        ->setDefaultSort(['sit_archive' => 'ASC']);
     }
     
 }
