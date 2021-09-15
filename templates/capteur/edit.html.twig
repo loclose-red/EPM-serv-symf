@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
+{% block link %}<a class="navbar-brand ancresNav" aria-current="page" href="{{ path('admin_board')}}">Tableau de bord</a>{% endblock %}
 
 {% block title %}Edit Capteur{% endblock %}
 
 {% block body %}
-    <h1>Edit Capteur</h1>
+    <h1>Edition capteur</h1>
 
-    {{ include('capteur/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('capteur/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('capteur_index') }}">back to list</a>
+    <a class="btn btn-outline-success" href="{{ path('capteur_index') }}">Retour liste</a>
 
-    {{ include('capteur/_delete_form.html.twig') }}
+    {# {{ include('capteur/_delete_form.html.twig') }} #}
 {% endblock %}

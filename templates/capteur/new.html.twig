@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
+{% block link %}<a class="navbar-brand ancresNav" aria-current="page" href="{{ path('admin_board')}}">Tableau de bord</a>{% endblock %}
 
 {% block title %}New Capteur{% endblock %}
 
 {% block body %}
-    <h1>Create new Capteur</h1>
+    <h1>Création nouveau capteur</h1>
 
     {{ include('capteur/_form.html.twig') }}
 
-    <a href="{{ path('capteur_index') }}">back to list</a>
+    <a class="btn btn-outline-success" href="{{ path('capteur_index') }}">Retour liste</a>
 {% endblock %}
