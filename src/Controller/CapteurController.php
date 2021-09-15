@@ -21,7 +21,7 @@ class CapteurController extends AbstractController
     public function index(CapteurRepository $capteurRepository): Response
     {
         return $this->render('capteur/index.html.twig', [
-            'capteurs' => $capteurRepository->findAll(),
+            'capteurs' => $capteurRepository->findby([],['cap_archive' => 'ASC']),
         ]);
     }
 

@@ -21,7 +21,7 @@ class SiteController extends AbstractController
     public function index(SiteRepository $siteRepository): Response
     {
         return $this->render('site/index.html.twig', [
-            'sites' => $siteRepository->findAll(),
+            'sites' => $siteRepository->findby([],['sit_archive' => 'ASC']),
         ]);
     }
 

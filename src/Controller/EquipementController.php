@@ -21,7 +21,7 @@ class EquipementController extends AbstractController
     public function index(EquipementRepository $equipementRepository): Response
     {
         return $this->render('equipement/index.html.twig', [
-            'equipements' => $equipementRepository->findAll(),
+            'equipements' => $equipementRepository->findby([],['equ_archive' => 'ASC']),
         ]);
     }
 

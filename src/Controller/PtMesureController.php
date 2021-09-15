@@ -21,7 +21,7 @@ class PtMesureController extends AbstractController
     public function index(PtMesureRepository $ptMesureRepository): Response
     {
         return $this->render('pt_mesure/index.html.twig', [
-            'pt_mesures' => $ptMesureRepository->findAll(),
+            'pt_mesures' => $ptMesureRepository->findby([],['pt_mes_archive' => 'ASC']),
         ]);
     }
 
