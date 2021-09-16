@@ -57,7 +57,7 @@ class AdminBoardController extends AbstractController
             $equipements = $equipementRepository->findBy(["site" => $siteId, 'equ_archive' => false]);
             $utilisateurs = $siteSelect->getUtilisateurs();
         } else {
-            $siteSelect = $siteRepository->findOneBy([]);
+            // $siteSelect = $siteRepository->findOneBy([]);
         }
 
         /////////////////////////////////////////////

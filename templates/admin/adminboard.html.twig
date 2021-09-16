@@ -72,13 +72,23 @@
       <hr>
       <div class="titreSite">
         <h4>Site:
-          {{siteSelect.sitville}}</h4>
+          {% if siteSelect.id == null %}
+            Veuillez sélectionner un site!
+          {% endif %}
+          {{siteSelect.sitville}}
+        </h4>
       </div>
       <hr>
       <div class="trancheUtilisateurs">
         <div class="titreUtilisateur">
           <h3>Utilisateur</h3>
+          <pre>
+            {# {{ dump(siteSelect.id) }} #}
+          </pre>
+          {% if siteSelect.id != null %}
           <a href="{{ path('site_edit', {'id': siteSelect.id})}}" class="btn btn-outline-primary">Changer Utilisateur</a>
+            
+          {% endif %}
         </div>
           
 
