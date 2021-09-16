@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Grandeur;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -33,6 +35,13 @@ class GrandeurCrudController extends AbstractCrudController
     {
         return $crud
         ->setDefaultSort(['gra_archive' => 'ASC']);
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->remove(Crud::PAGE_INDEX, Action::DELETE)
+        ;
     }
     
 }

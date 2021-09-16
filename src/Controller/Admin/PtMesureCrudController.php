@@ -6,6 +6,8 @@ use App\Entity\Capteur;
 use App\Entity\Equipement;
 use App\Entity\Grandeur;
 use App\Entity\PtMesure;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -83,6 +85,13 @@ class PtMesureCrudController extends AbstractCrudController
     {
         return $crud
         ->setDefaultSort(['pt_mes_archive' => 'ASC']);
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->remove(Crud::PAGE_INDEX, Action::DELETE)
+        ;
     }
     
 }
