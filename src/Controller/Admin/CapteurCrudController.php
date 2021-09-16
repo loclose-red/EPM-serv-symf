@@ -55,6 +55,7 @@ class CapteurCrudController extends AbstractCrudController
             TextField::new('cap_marque', 'Marque'),
             TextField::new('cap_modele', 'Modèle'),
             TextField::new('cap_serie', 'N° série'),
+            TextField::new('cap_macadress', 'Adresse mac (BT)'),
             //pour afficher la grandeur dans l'index
             TextField::new('grandeur', 'Unité')->onlyOnIndex(),
             //pour afficher la liste des grandeurs dans l'édition
