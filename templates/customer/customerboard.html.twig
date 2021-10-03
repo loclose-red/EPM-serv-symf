@@ -41,8 +41,11 @@
   </div>
   <div class="BlocDesGraphiques">
     {% for UnPtMesAvecCapteurEtMesure in lesPtMesAvecCapteurEtMesures %}
-    
       <div class="blocUnPoint">
+      
+      {# Ce bouton pour effacer les graphiques est mise en place pour la version démo #}
+      {# cette fonctionnalité devra être supprimé dans la version finale #}
+        <a href="{{ path('efface_graphique', {'id': UnPtMesAvecCapteurEtMesure[0].id})}}" class="btn btn-outline-primary">Effacer graphique</a>
         <div>
           Nom du point:
           {{UnPtMesAvecCapteurEtMesure[0].ptmesnom}};

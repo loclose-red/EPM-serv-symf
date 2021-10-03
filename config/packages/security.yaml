@@ -39,7 +39,6 @@ security:
         - { path: ^/customerboard, roles: ROLE_USER }
 
         - { path: ^/capteur, roles: ROLE_USER }
-        - { path: ^/contact, roles: ROLE_USER }
         - { path: ^/equipement, roles: ROLE_USER }
         - { path: ^/ptmesure, roles: ROLE_USER }
         - { path: ^/site, roles: ROLE_USER }

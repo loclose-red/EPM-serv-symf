@@ -5,6 +5,7 @@ namespace App\Controller\Customer;
 use App\Entity\Capteur;
 use App\Entity\Equipement;
 use App\Entity\Site;
+use App\Entity\Mesure;
 use App\Repository\EquipementRepository;
 use App\Repository\MesureRepository;
 use App\Repository\PtMesureRepository;
@@ -122,5 +123,23 @@ class CustomerboardController extends AbstractController
             'controller_name' => 'CustomerboardController',
             'role' => $this->getUser()->getRoles()[0]
         ]);
+    }
+
+
+    //Cette route pour effacer les graphiques est mise en place pour la version démo
+    //cett fonctionnalité devra être supprimé dans la version finale
+
+    /**
+     * @Route("/effacegraphique/{id}", name="efface_graphique")
+     */
+    public function effaceGraph($id, MesureRepository $mesureRepository, Mesure $mesure): Response
+    {
+        $lesMesures = $mesureRepository->findBy(['ptmesure' => $id]);
+        $entityManager = $this->getDoctrine()->getManager();
+        foreach ($lesMesures as $mesure){
+            $entityManager->remove($mesure);
+        };
+        $entityManager->flush();
+        return $this->redirectToRoute('customer_board');
     }
 }
