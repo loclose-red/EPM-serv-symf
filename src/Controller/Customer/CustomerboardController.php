@@ -132,7 +132,7 @@ class CustomerboardController extends AbstractController
     /**
      * @Route("/effacegraphique/{id}", name="efface_graphique")
      */
-    public function effaceGraph($id, MesureRepository $mesureRepository, Mesure $mesure): Response
+    public function effaceGraph($id, MesureRepository $mesureRepository): Response
     {
         $lesMesures = $mesureRepository->findBy(['ptmesure' => $id]);
         $entityManager = $this->getDoctrine()->getManager();
