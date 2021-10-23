@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Site;
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
 use App\Repository\UtilisateurRepository;
@@ -20,8 +21,25 @@ class UtilisateurController extends AbstractController
      */
     public function index(UtilisateurRepository $utilisateurRepository): Response
     {
+        
+        $utilisateursAvecSite = [];
+        $utilisateurs = $utilisateurRepository->findAll();
+        foreach ($utilisateurs as $utilisateur) {
+            $userPlusSite = [];
+            $userPlusSite[] = $utilisateur;
+            $sites = $utilisateur->getSite();
+            $nomSite = "";
+            if(!empty($sites[0])){
+                $nomSite = $sites[0]->getSitRaisonSociale();
+            }
+            $userPlusSite[] = $nomSite;
+            $utilisateursAvecSite[] = $userPlusSite;
+            
+        }
+
         return $this->render('utilisateur/index.html.twig', [
-            'utilisateurs' => $utilisateurRepository->findAll(),
+            'utilisateurs' => $utilisateurs,
+            'utilisateursAvecSite' => $utilisateursAvecSite
         ]);
     }
 

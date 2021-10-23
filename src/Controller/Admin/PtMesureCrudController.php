@@ -45,7 +45,7 @@ class PtMesureCrudController extends AbstractCrudController
         return $tableauRetour;
     }
 
-    //Création d'une fonction pour récupérer la liste des "equipements"
+    //Création d'une fonction pour récupérer la liste des "Capteurs"
     //cette fonction sera utilisée pour afficher le choix des equipements pour un point de mesure
     public function listeCapteurs()
     {

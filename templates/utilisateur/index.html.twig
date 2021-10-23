@@ -13,20 +13,22 @@
         {# <th>Id</th> #}
         <th>Nom (Logname)</th>
         <th>Roles</th>
-        {# <th>Password</th> #}
+        <th>Site</th>
         <th>actions</th>
       </tr>
     </thead>
     <tbody>
-      {% for utilisateur in utilisateurs %}
+      {% for utilisateur in utilisateursAvecSite %}
+      <pre>
+      </pre>
         <tr>
           {# <td>{{ utilisateur.id }}</td> #}
-          <td>{{ utilisateur.logname }}</td>
-          <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
-          {# <td>{{ utilisateur.password }}</td> #}
+          <td>{{ utilisateur[0].logname }}</td>
+          <td>{{ utilisateur[0].roles ? utilisateur[0].roles|json_encode : '' }}</td>
+          <td>{{ utilisateur[1] }}</td>
           <td>
             {# <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}" class="btn btn-primary">Voir</a> #}
-            <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}" class="btn btn-success">Editer</a>
+            <a href="{{ path('utilisateur_edit', {'id': utilisateur[0].id}) }}" class="btn btn-success">Editer</a>
           </td>
         </tr>
       {% else %}

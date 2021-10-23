@@ -85,10 +85,9 @@
           <pre>
             {# {{ dump(siteSelect.id) }} #}
           </pre>
-          {% if siteSelect.id != null %}
-          <a href="{{ path('site_edit', {'id': siteSelect.id})}}" class="btn btn-outline-primary">Changer Utilisateur</a>
-            
-          {% endif %}
+          {# {% if siteSelect.id != null %} #}
+          {# <a href="{{ path('site_edit', {'id': siteSelect.id})}}" class="btn btn-outline-primary">Changer Utilisateur</a> #}            
+          {# {% endif %} #}
         </div>
           
 
@@ -108,13 +107,13 @@
                   <td>
                     <a href="{{ path('utilisateur_edit', {'id': utilisateur.id})}}" class="btn btn-outline-primary">Edit</a>
                   </td>
-                  <td>
+                  {# <td> #}
                     {# Bout de code récupéré du twig "crud" utilisateur #}
-                    <form method="post" action="{{ path('utilisateur_delete', {'id': utilisateur.id}) }}" onsubmit="return confirm('Souhaitez vous supprimer cet utilisateur?');">
-                      <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ utilisateur.id) }}">
-                      <button class="btn btn-outline-danger">Supprimer</button>
-                    </form>
-                  </td>
+                    {# <form method="post" action="{{ path('utilisateur_delete', {'id': utilisateur.id}) }}" onsubmit="return confirm('Souhaitez vous supprimer cet utilisateur?');"> #}
+                      {# <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ utilisateur.id) }}"> #}
+                      {# <button class="btn btn-outline-danger">Supprimer</button> #}
+                    {# </form> #}
+                  {# </td> #}
                 </tr>
               {% endfor %}
 

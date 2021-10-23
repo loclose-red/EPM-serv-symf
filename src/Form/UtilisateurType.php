@@ -26,7 +26,8 @@ class UtilisateurType extends AbstractType
                     ],
                 ],
             ])
-            ->add('password');
+            ->add('password')
+            ->add('site');
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Site;
+use App\Entity\Utilisateur;
 use App\Form\SiteType;
 use App\Repository\SiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -61,13 +62,14 @@ class SiteController extends AbstractController
     /**
      * @Route("/{id}/edit", name="site_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Site $site): Response
+    public function edit(Request $request, Site $site, SiteRepository $siteRepository): Response
     {
         $form = $this->createForm(SiteType::class, $site);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
 
             return $this->redirectToRoute('site_index', [], Response::HTTP_SEE_OTHER);
         }
